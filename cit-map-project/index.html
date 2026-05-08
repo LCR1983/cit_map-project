@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="関東地方の旬の食材を発見・検索できるインタラクティブマップ。直売所情報やイベント、AIソムリエ機能であなたの食体験をサポートします。">
+    <title>関東地方マップ＆検索ツール</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">メインコンテンツへスキップ</a>
+
+    <header class="accessibility-header">
+        <div class="header-inner">
+            <div class="site-logo-area">
+                <img src="https://placehold.co/200x50/2a2a4e/ffffff?text=CIT+Project" alt="千葉工業大学" class="cit-logo">
+            </div>
+
+            <div class="settings-area">
+                <div class="setting-group">
+                    <span class="setting-label" data-i18n="lang">Language</span>
+                    <button id="lang-jp" class="setting-btn active" aria-pressed="true">日本語</button>
+                    <button id="lang-en" class="setting-btn" aria-pressed="false">English</button>
+                </div>
+                <div class="setting-group">
+                    <span class="setting-label" data-i18n="fontSize">文字サイズ</span>
+                    <button id="font-std" class="setting-btn active" data-i18n="std" aria-pressed="true">標準</button>
+                    <button id="font-lg" class="setting-btn" data-i18n="large" aria-pressed="false">拡大</button>
+                </div>
+                <div class="setting-group">
+                    <span class="setting-label" data-i18n="bgColor">背景色</span>
+                    <button id="color-dark" class="setting-btn active" data-i18n="black" aria-pressed="true">黒</button>
+                    <button id="color-light" class="setting-btn" data-i18n="white" aria-pressed="false">白</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="topics-slider-section" aria-label="最新情報のお知らせ">
+        <div class="slider-container">
+            <div class="slider-wrapper" id="slider-wrapper">
+                <div class="slide"><div class="slide-content"><span class="slide-tag">NEWS</span><p>2025.12.01 サイトを冬仕様にリニューアルオープンしました！</p></div></div>
+                <div class="slide"><div class="slide-content"><span class="slide-tag">EVENT</span><p>横浜赤レンガ倉庫で「クリスマスマーケット」開催中（〜12/25）</p></div></div>
+                <div class="slide"><div class="slide-content"><span class="slide-tag">UPDATE</span><p>旬の食材データベースに「下仁田ネギ」「いちご」などの冬の味覚を追加しました。</p></div></div>
+                <div class="slide"><div class="slide-content"><span class="slide-tag">Info</span><p>年末年始の直売所営業時間は各公式サイトをご確認ください。</p></div></div>
+                <div class="slide"><div class="slide-content"><span class="slide-tag">Pickup</span><p>今週のおすすめ食材は茨城県の「あんこう」です！</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <main id="main-content">
+        <div class="page-title-area">
+            <h1 data-i18n="title">関東地方インタラクティブマップ</h1>
+            <p data-i18n="subtitle">都道府県にマウスを合わせると情報が変わり、クリックするとHPに移動します。</p>
+        </div>
+
+        <div class="main-content-wrapper">
+            <div class="map-container" aria-label="関東地方の地図">
+                <img id="gunma" class="prefecture-icon" src="3_kantou3__gunma.png" alt="群馬県" role="button" tabindex="0">
+                <img id="tochigi" class="prefecture-icon" src="3_kantou2__tochigi.png" alt="栃木県" role="button" tabindex="0">
+                <img id="ibaraki" class="prefecture-icon" src="3_kantou1__ibaraki.png" alt="茨城県" role="button" tabindex="0">
+                <img id="saitama" class="prefecture-icon" src="3_kantou4__saitama.png" alt="埼玉県" role="button" tabindex="0">
+                <img id="chiba" class="prefecture-icon" src="3_kantou5__chiba.png" alt="千葉県" role="button" tabindex="0">
+                <img id="tokyo" class="prefecture-icon" src="3_kantou6__tokyo.png" alt="東京都" role="button" tabindex="0">
+                <img id="kanagawa" class="prefecture-icon" src="3_kantou7__kanagawa.png" alt="神奈川県" role="button" tabindex="0">
+                
+                <div id="topic-box" class="topic-box-style" aria-live="polite" hidden>
+                    <img id="topic-image" src="" alt="">
+                    <div class="topic-content">
+                        <h3 id="topic-title"></h3>
+                        <p id="topic-description"></p>
+                    </div>
+                </div>
+            </div>
+
+            <section class="rating-tool-sidebar">
+                <h2 data-i18n="rateTitle">このツールを評価する</h2>
+                <p data-i18n="rateDesc">この食材発見ツールは、あなたの役に立ちましたか？</p>
+                <form id="rating-form" onsubmit="return false;">
+                    <div class="rating-stars" data-rating="0" role="radiogroup" aria-label="5段階評価">
+                        <span class="star" data-value="1" role="radio" aria-checked="false" tabindex="0" aria-label="星1つ">★</span>
+                        <span class="star" data-value="2" role="radio" aria-checked="false" tabindex="0" aria-label="星2つ">★</span>
+                        <span class="star" data-value="3" role="radio" aria-checked="false" tabindex="0" aria-label="星3つ">★</span>
+                        <span class="star" data-value="4" role="radio" aria-checked="false" tabindex="0" aria-label="星4つ">★</span>
+                        <span class="star" data-value="5" role="radio" aria-checked="false" tabindex="0" aria-label="星5つ">★</span>
+                    </div>
+                    <div class="comment-group">
+                        <label for="comment-textarea" data-i18n="commentLabel">ご意見・ご感想</label>
+                        <textarea id="comment-textarea" class="comment-textarea" rows="4" placeholder="感想をお聞かせください"></textarea>
+                    </div>
+                    <button type="submit" id="rating-submit-button" class="neon-button" data-i18n="submit">評価を送信する</button>
+                </form>
+            </section>
+        </div>
+
+        <hr class="neon-divider">
+
+        <section class="main-feature-section">
+            <h2 data-i18n="searchTitle">旬の特産物検索</h2>
+            <div class="feature-inner">
+                <form id="search-form" onsubmit="return false;">
+                    <div class="filter-container">
+                        <div class="filter-group">
+                            <label for="season-select" data-i18n="season">季節:</label>
+                            <select id="season-select" class="neon-select">
+                                <option value="all" data-i18n="allSeasons">すべての季節</option><option value="spring" data-i18n="spring">春</option><option value="summer" data-i18n="summer">夏</option><option value="autumn" data-i18n="autumn">秋</option><option value="winter" data-i18n="winter">冬</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="pref-select" data-i18n="prefecture">都県:</label>
+                            <select id="pref-select" class="neon-select">
+                                <option value="all" data-i18n="allPrefs">すべての都県</option><option value="gunma" data-i18n="gunma">群馬県</option><option value="tochigi" data-i18n="tochigi">栃木県</option><option value="ibaraki" data-i18n="ibaraki">茨城県</option><option value="saitama" data-i18n="saitama">埼玉県</option><option value="chiba" data-i18n="chiba">千葉県</option><option value="tokyo" data-i18n="tokyo">東京都</option><option value="kanagawa" data-i18n="kanagawa">神奈川県</option>
+                            </select>
+                        </div>
+                        <button type="submit" id="search-button" class="neon-button" data-i18n="search">検索</button>
+                    </div>
+                </form>
+                <div id="results-container" aria-live="polite">
+                    <p style="color: #b0b0d0;">条件を選択して「検索」ボタンを押してください。</p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="neon-divider">
+
+        <section class="main-feature-section">
+            <h2 data-i18n="event">イベント情報</h2>
+            <div class="feature-inner">
+                <div id="event-container" class="event-grid">
+                    </div>
+                <div class="event-calendar-btn-wrapper">
+                     <button class="event-calendar-btn">
+                         <span class="icon-calendar" aria-hidden="true">📅</span> 
+                         イベントカレンダーを見る
+                     </button>
+                </div>
+            </div>
+        </section>
+
+        <hr class="neon-divider">
+
+        <section class="feature-hub">
+            <h2 class="feature-title" data-i18n="featureTitle">食体験バラエティ (おまけ機能)</h2>
+            <ul class="tab-menu" role="tablist">
+                <li class="tab-item active" role="tab" aria-selected="true" tabindex="0" data-tab="tab-gps" data-i18n="gps">現在地</li>
+                <li class="tab-item" role="tab" aria-selected="false" tabindex="-1" data-tab="tab-gantt" data-i18n="chart">旬チャート</li>
+                <li class="tab-item" role="tab" aria-selected="false" tabindex="-1" data-tab="tab-weather" data-i18n="weather">お天気</li>
+                <li class="tab-item" role="tab" aria-selected="false" tabindex="-1" data-tab="tab-recipe" data-i18n="recipe">レシピ</li>
+                <li class="tab-item" role="tab" aria-selected="false" tabindex="-1" data-tab="tab-quiz" data-i18n="quiz">クイズ</li>
+                <li class="tab-item" role="tab" aria-selected="false" tabindex="-1" data-tab="tab-swipe" data-i18n="swipe">直感選別</li>
+                <li class="tab-item" role="tab" aria-selected="false" tabindex="-1" data-tab="tab-ai" data-i18n="ai">AIソムリエ</li>
+                <li class="tab-item" role="tab" aria-selected="false" tabindex="-1" data-tab="tab-route" data-i18n="route">ルート作成</li>
+            </ul>
+
+            <div class="tab-content-container">
+                <div id="tab-gps" class="tab-pane active" role="tabpanel">
+                    <div class="feature-inner">
+                        <h3>現在地から旬の食材を探す</h3>
+                        <p>位置情報を利用して、近くの特産物を表示します。</p>
+                        <button id="gps-btn" class="neon-button">現在地を取得</button>
+                        <div id="gps-status-msg" class="status-message" aria-live="polite"></div>
+                        <div id="gps-result-container" class="results-grid"></div>
+                    </div>
+                </div>
+                <div id="tab-gantt" class="tab-pane" role="tabpanel" hidden><div class="feature-inner"><h3>旬のガントチャート</h3><div class="gantt-wrapper"><div id="gantt-chart-area" class="gantt-area"></div><div class="gantt-axis"><span>春 (3-5月)</span><span>夏 (6-8月)</span><span>秋 (9-11月)</span><span>冬 (12-2月)</span></div></div></div></div>
+                
+                <div id="tab-weather" class="tab-pane" role="tabpanel" hidden>
+                    <div class="feature-inner">
+                        <h3>お天気連動レコメンド</h3>
+                        <p>現在地の気温に合わせて、おすすめの食材を提案します。</p>
+                        <button id="weather-btn" class="neon-button" style="margin-bottom: 15px;">天気を取得する</button>
+                        <div class="weather-widget">
+                            <div id="weather-display" style="font-size: 1.2em; font-weight: bold; margin-bottom: 10px;">現在地の天気: <span id="weather-status" style="color: var(--accent);">未取得</span></div>
+                            <div id="weather-comment" class="ai-comment-box" style="background: var(--bg-sec); padding: 15px; border-radius: 8px; border: 1px solid var(--border-color);">ボタンを押して天気を取得してください。</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-recipe" class="tab-pane" role="tabpanel" hidden><div class="feature-inner"><h3>レシピ連携</h3><form onsubmit="return false;" class="input-group-row"><input type="text" id="recipe-input" class="neon-input" placeholder="食材名 (例: 下仁田ネギ)"><button id="recipe-btn" class="neon-button">レシピ検索</button></form></div></div>
+                <div id="tab-quiz" class="tab-pane" role="tabpanel" hidden><div class="feature-inner"><h3>食材クイズ (全10問)</h3><div id="quiz-container" class="quiz-box" aria-live="polite"><div class="quiz-header"><span id="quiz-count">第1問</span></div><p id="quiz-question" class="quiz-question">読み込み中...</p><div id="quiz-options" class="quiz-options"></div><div id="quiz-feedback" class="quiz-feedback" hidden><p id="quiz-result-msg" class="quiz-result-msg"></p><p id="quiz-explanation" class="quiz-explanation"></p><button id="quiz-next-btn" class="neon-button">次の問題へ</button></div></div></div></div>
+                <div id="tab-swipe" class="tab-pane" role="tabpanel" hidden><div class="feature-inner"><h3>直感スワイプ選別</h3><p>カードをドラッグして直感で選ぼう！</p><div class="swipe-stage"><div id="swipe-card" class="swipe-card-ui"><div class="swipe-status like">LIKE</div><div class="swipe-status nope">NOPE</div><img id="swipe-img" src="" alt="スワイプ対象の食材画像" draggable="false" loading="lazy"><h4 id="swipe-name"></h4><p id="swipe-desc"></p></div></div><div class="swipe-controls"><button id="swipe-no" class="swipe-btn no" aria-label="興味なし">✕</button><button id="swipe-yes" class="swipe-btn yes" aria-label="興味あり">❤</button></div><div class="matched-list-area"><h4>マッチングした食材</h4><div id="swipe-results" class="results-grid"></div></div></div></div>
+                <div id="tab-ai" class="tab-pane" role="tabpanel" hidden>
+                    <div class="feature-inner">
+                        <h3>AI食材ソムリエ</h3>
+                        <div class="chat-window" id="chat-window" aria-live="polite">
+                            <div class="chat-msg bot">こんにちは！今日はどんな気分ですか？マイクボタンから声で話しかけることもできますよ。</div>
+                        </div>
+                        <form onsubmit="return false;" class="input-group-row">
+                            <button type="button" id="voice-btn" class="neon-button voice-btn" title="音声入力" aria-label="音声入力開始">🎤</button>
+                            <input type="text" id="chat-input" class="neon-input chat-input-field" placeholder="メッセージを入力...">
+                            <button type="submit" id="chat-send" class="neon-button">送信</button>
+                        </form>
+                    </div>
+                </div>
+                <div id="tab-route" class="tab-pane" role="tabpanel" hidden><div class="feature-inner"><h3>自動食い倒れルート生成</h3><form onsubmit="return false;" class="form-grid"><input type="text" id="route-start" class="neon-input" placeholder="出発地 (例: 東京駅)"><select id="route-budget" class="neon-select"><option value="3000">3,000円コース</option><option value="5000">5,000円コース</option><option value="10000">10,000円贅沢コース</option></select><button id="route-btn" class="neon-button">ルート生成</button></form><div id="route-result" class="feature-result-box" aria-live="polite"></div></div></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <h3 data-i18n="officialLinks">公式アカウント・関連リンク</h3>
+        <div class="social-links">
+            <a href="https://twitter.com/chibakoudai_cit" target="_blank" rel="noopener noreferrer" class="social-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><span>公式X</span></a>
+            <a href="https://www.it-chiba.ac.jp/faculty/advanced_engineering/digital_transformation/" target="_blank" rel="noopener noreferrer" class="social-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span>学科HP</span></a>
+            <a href="https://www.youtube.com/user/chibakoudai" target="_blank" rel="noopener noreferrer" class="social-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg><span>YouTube</span></a>
+        </div>
+        <p class="copyright">© 2025 DS Course Project</p>
+    </footer>
+
+    <div id="modal-overlay" class="modal-overlay-style" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+        <div id="modal-content" class="modal-content-style">
+            <button id="modal-close" class="modal-close-style" aria-label="閉じる">×</button>
+            <img id="modal-image" src="" alt="" loading="lazy">
+            <div class="modal-text-content">
+                <h3 id="modal-title"></h3>
+                <p id="modal-description"></p>
+                <hr class="modal-divider">
+                <h4 data-i18n="localDish">関連する郷土料理</h4>
+                <p id="modal-dish"></p>
+                <h4 data-i18n="marketInfo">直売所・市場情報</h4>
+                <p id="modal-market"></p>
+                
+                <div class="modal-buttons" style="display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap;">
+                    <a id="modal-map-link" href="#" target="_blank" rel="noopener noreferrer" class="neon-button map-button" style="background-color: rgba(40, 167, 69, 0.2); border-color: #28a745; color: #28a745;">📍 近くの直売所をマップで探す</a>
+                    <a id="modal-link" href="#" target="_blank" rel="noopener noreferrer" class="neon-button modal-link-button" data-i18n="infoLink">情報サイトへ</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
