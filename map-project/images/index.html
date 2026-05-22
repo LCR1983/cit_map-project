@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>関東地方マップ＆検索ツール</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>関東地方インタラクティブマップ</h1>
+    <p>都道府県にマウスを合わせると情報が変わり、クリックするとHPに移動します。</p>
+
+    <div class="main-content-wrapper">
+
+        <div class="map-container">
+            <img id="gunma"    class="prefecture-icon" src="3_kantou3__gunma.png"    alt="群馬県">
+            <img id="tochigi"  class="prefecture-icon" src="3_kantou2__tochigi.png"  alt="栃木県">
+            <img id="ibaraki"  class="prefecture-icon" src="3_kantou1__ibaraki.png"  alt="茨城県">
+            <img id="saitama"  class="prefecture-icon" src="3_kantou4__saitama.png"  alt="埼玉県">
+            <img id="chiba"    class="prefecture-icon" src="3_kantou5__chiba.png"    alt="千葉県">
+            <img id="tokyo"    class="prefecture-icon" src="3_kantou6__tokyo.png"    alt="東京都">
+            <img id="kanagawa" class="prefecture-icon" src="3_kantou7__kanagawa.png" alt="神奈川県">
+    
+            <div id="topic-box" class="topic-box-style">
+                <img id="topic-image" src="" alt="特産物">
+                <div class="topic-content">
+                    <h3 id="topic-title"></h3>
+                    <p id="topic-description"></p>
+                </div>
+            </div>
+        </div>
+
+        <section class="rating-tool-sidebar">
+            <h2>このツールを評価する</h2>
+            <p>この食材発見ツールは、あなたの役に立ちましたか？</p>
+            
+            <div class="rating-stars" data-rating="0">
+                <span class="star" data-value="1">★</span>
+                <span class="star" data-value="2">★</span>
+                <span class="star" data-value="3">★</span>
+                <span class="star" data-value="4">★</span>
+                <span class="star" data-value="5">★</span>
+            </div>
+            
+            <div class="comment-group">
+                <label for="comment-textarea">
+                    ご意見・ご感想 (将来の「食材コース」機能などのアイデアもお待ちしています)
+                </label>
+                <textarea id="comment-textarea" class="comment-textarea" rows="4" placeholder="（例）「千葉の梨と落花生を巡る日帰りコース」が知りたいです..."></textarea>
+            </div>
+            
+            <button id="rating-submit-button" class="neon-button">評価を送信する</button>
+            
+        </section>
+
+    </div> <hr class="neon-divider">
+
+    <section class="search-tool">
+        <h2>旬の特産物検索</h2>
+        <div class="filter-container">
+            <div class="filter-group">
+                <label for="season-select">季節:</label>
+                <select id="season-select" class="neon-select">
+                    <option value="all">すべての季節</option>
+                    <option value="spring">春</option>
+                    <option value="summer">夏</option>
+                    <option value="autumn">秋</option>
+                    <option value="winter">冬</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="pref-select">都県:</label>
+                <select id="pref-select" class="neon-select">
+                    <option value="all">すべての都県</option>
+                    <option value="gunma">群馬県</option>
+                    <option value="tochigi">栃木県</option>
+                    <option value="ibaraki">茨城県</option>
+                    <option value="saitama">埼玉県</option>
+                    <option value="chiba">千葉県</option>
+                    <option value="tokyo">東京都</option>
+                    <option value="kanagawa">神奈川県</option>
+                </select>
+            </div>
+            <button id="search-button" class="neon-button">検索</button>
+        </div>
+        
+        <div id="results-container">
+            </div>
+    </section>
+
+    <div id="modal-overlay" class="modal-overlay-style">
+        <div id="modal-content" class="modal-content-style">
+            <span id="modal-close" class="modal-close-style">&times;</span>
+            <img id="modal-image" src="" alt="特産物詳細">
+            <div class="modal-text-content">
+                <h3 id="modal-title"></h3>
+                <p id="modal-description"></p>
+                <hr class="modal-divider">
+                <h4>関連する郷土料理</h4>
+                <p id="modal-dish"></p>
+                <h4>直売所・市場情報</h4>
+                <p id="modal-market"></p>
+                <a id="modal-link" href="#" target="_blank" class="neon-button modal-link-button">情報サイトへ</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
