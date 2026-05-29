@@ -123,6 +123,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // --- Header Settings Toggle (Mobile) ---
+    const settingsToggleBtn = document.getElementById('settings-toggle-btn');
+    const settingsPanel = document.getElementById('settings-panel');
+    if (settingsToggleBtn && settingsPanel) {
+        settingsToggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            settingsPanel.classList.toggle('is-open');
+            const isOpen = settingsPanel.classList.contains('is-open');
+            settingsToggleBtn.setAttribute('aria-expanded', isOpen);
+        });
+        // パネル外クリックで閉じる
+        document.addEventListener('click', (e) => {
+            if (settingsPanel.classList.contains('is-open') && !settingsPanel.contains(e.target) && e.target !== settingsToggleBtn) {
+                settingsPanel.classList.remove('is-open');
+                settingsToggleBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+    }
+
     // --- Header Settings (Lang, Font, Color) ---
     const translations = {
         "title": "Kanto Local Food Map", "subtitle": "Find seasonal local specialties!", "gpsTitle": "Find specialties near you", "gpsBtn": "Get Location", "event": "📅 Events", "weatherTitle": "Weather Recommend", "weatherGet": "Get Weather", "quizTitle": "Local Food Quiz", "swipeTitle": "Intuitive Matching", "swipeDesc": "Drag cards or use buttons!", "swipeMatched": "Matched Foods", "aiTitle": "AI Sommelier", "aiGreeting": "Do you have any plans? (e.g., Seafood with partner)", "chatSend": "Send", "routeTitle": "Tour Planner", "routeCreate": "Generate Plan", "officialX": "Official X", "officialHP": "University HP"
@@ -326,43 +345,64 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const kantoSvg = document.getElementById('kanto-svg');
+    let isTouchDevice = false;
+    window.addEventListener('touchstart', () => { isTouchDevice = true; }, { passive: true });
+
+    const showPopupForPref = (prefId) => {
+        if (kantoSvg) kantoSvg.classList.add('has-hover');
+        document.querySelectorAll('.pref-img.is-hovered').forEach(el => el.classList.remove('is-hovered'));
+        const imgEl = document.getElementById(prefId);
+        if (imgEl) imgEl.classList.add('is-hovered');
+
+        const items = specialtyDatabase.filter(i => i.prefecture === prefId);
+        if (items.length > 0) {
+            const item = items[Math.floor(Math.random() * items.length)];
+            if (topicBadge) topicBadge.textContent = prefNames[prefId];
+            if (topicTitle) topicTitle.textContent = item.name;
+            if (topicDesc) topicDesc.textContent = item.description;
+            if (topicImg) {
+                topicImg.src = item.imageSrc;
+                topicImg.style.display = 'block';
+            }
+            if (topicBox) {
+                topicBox.classList.add('is-visible');
+                topicBox.dataset.targetPref = prefId;
+            }
+        }
+    };
+
+    const hidePopupForPref = (prefId) => {
+        if (kantoSvg) kantoSvg.classList.remove('has-hover');
+        const imgEl = document.getElementById(prefId);
+        if (imgEl) imgEl.classList.remove('is-hovered');
+        if (topicBox) topicBox.classList.remove('is-visible');
+    };
+
+    if (topicBox) {
+        topicBox.style.cursor = 'pointer';
+        topicBox.addEventListener('click', () => {
+            const prefId = topicBox.dataset.targetPref;
+            if (prefId) window.location.href = `prefecture.html?pref=${prefId}`;
+        });
+    }
 
     prefHits.forEach(hit => {
         hit.addEventListener('mouseenter', (e) => {
-            const prefId = e.target.dataset.target;
-            
-            // 1. マップ画像の強調処理
-            if (kantoSvg) kantoSvg.classList.add('has-hover');
-            const imgEl = document.getElementById(prefId);
-            if (imgEl) imgEl.classList.add('is-hovered');
-
-            const items = specialtyDatabase.filter(i => i.prefecture === prefId);
-            if (items.length > 0) {
-                // Show a random item from this prefecture
-                const item = items[Math.floor(Math.random() * items.length)];
-                if (topicBadge) topicBadge.textContent = prefNames[prefId];
-                if (topicTitle) topicTitle.textContent = item.name;
-                if (topicDesc) topicDesc.textContent = item.description;
-                if (topicImg) {
-                    topicImg.src = item.imageSrc;
-                    topicImg.style.display = 'block';
-                }
-                // 2. トピックボックスの表示
-                if (topicBox) topicBox.classList.add('is-visible');
-            }
+            if (isTouchDevice) return;
+            showPopupForPref(e.target.dataset.target);
         });
         hit.addEventListener('mouseleave', (e) => {
-            const prefId = e.target.dataset.target;
-            if (kantoSvg) kantoSvg.classList.remove('has-hover');
-            const imgEl = document.getElementById(prefId);
-            if (imgEl) imgEl.classList.remove('is-hovered');
-            
-            // 3. トピックボックスの非表示
-            if (topicBox) topicBox.classList.remove('is-visible');
+            if (isTouchDevice) return;
+            hidePopupForPref(e.target.dataset.target);
         });
+        hit.addEventListener('touchstart', (e) => {
+            // スマホでのタップ時の挙動: ポップアップを表示し、クリックによる遷移を防ぐ
+            e.preventDefault(); 
+            showPopupForPref(e.target.dataset.target);
+        }, { passive: false });
         hit.addEventListener('click', (e) => {
+            if (isTouchDevice) return;
             const prefId = e.target.dataset.target;
-            // Navigate to prefecture detail page
             window.location.href = `prefecture.html?pref=${prefId}`;
         });
     });
@@ -617,6 +657,63 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => card.style.transition = 'transform 0.4s ease, opacity 0.4s ease', 50);
         }, 400);
     });
+
+    // --- Touch swipe implementation ---
+    const swipeCardUI = document.getElementById('swipe-card');
+    let startX = 0;
+    let currentX = 0;
+    let isDragging = false;
+    
+    if (swipeCardUI) {
+        swipeCardUI.addEventListener('touchstart', (e) => {
+            if (appState.swipeIndex >= appState.swipeDeck.length) return;
+            startX = e.touches[0].clientX;
+            isDragging = true;
+            swipeCardUI.style.transition = 'none';
+        }, {passive: true});
+
+        swipeCardUI.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            currentX = e.touches[0].clientX - startX;
+            const rotate = currentX * 0.05;
+            swipeCardUI.style.transform = `translateX(${currentX}px) rotate(${rotate}deg)`;
+            
+            const likeStatus = swipeCardUI.querySelector('.swipe-status.like');
+            const nopeStatus = swipeCardUI.querySelector('.swipe-status.nope');
+            
+            if (currentX > 50 && likeStatus) {
+                likeStatus.style.opacity = Math.min(1, (currentX - 50) / 50);
+            } else if (likeStatus) {
+                likeStatus.style.opacity = 0;
+            }
+            
+            if (currentX < -50 && nopeStatus) {
+                nopeStatus.style.opacity = Math.min(1, Math.abs(currentX + 50) / 50);
+            } else if (nopeStatus) {
+                nopeStatus.style.opacity = 0;
+            }
+        }, {passive: true});
+
+        swipeCardUI.addEventListener('touchend', (e) => {
+            if (!isDragging) return;
+            isDragging = false;
+            swipeCardUI.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
+            
+            const likeStatus = swipeCardUI.querySelector('.swipe-status.like');
+            const nopeStatus = swipeCardUI.querySelector('.swipe-status.nope');
+            if(likeStatus) likeStatus.style.opacity = 0;
+            if(nopeStatus) nopeStatus.style.opacity = 0;
+
+            if (currentX > 100) {
+                if(swipeLike) swipeLike.click();
+            } else if (currentX < -100) {
+                if(swipePass) swipePass.click();
+            } else {
+                swipeCardUI.style.transform = `translateX(0) rotate(0)`;
+            }
+            currentX = 0;
+        });
+    }
 
     // --- AI Sommelier Chat ---
     const chatInput = document.getElementById('chat-input');
