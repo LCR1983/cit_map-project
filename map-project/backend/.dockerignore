@@ -1,0 +1,12 @@
+target/
+.git/
+.gitignore
+.idea/
+.settings/
+.project/
+.classpath/
+bin/
+*.iml
+*.log
+*.txt
+HELP.md
