@@ -13,6 +13,7 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost"}, allowCredentials = "true")
 public class SpecialtyController {
 
     // データベースの窓口（Repository）を呼び出せるように繋ぎます
