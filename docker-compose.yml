@@ -3,7 +3,7 @@ version: '3.8'
 services:
   db:
     image: mysql:8.0
-    container_name: attack-db
+    container_name: map-db
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: cit_DXproject.1024
@@ -12,8 +12,7 @@ services:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
-      # 一つ上の階層（cit-map-project直下）の mysql/init フォルダを参照します
-      - ../mysql/init:/docker-entrypoint-initdb.d
+      - ./map-project/mysql/init:/docker-entrypoint-initdb.d
     networks:
       - app-network
     healthcheck:
@@ -24,8 +23,8 @@ services:
       start_period: 20s
 
   backend:
-    build: ./app/backend
-    container_name: attack-backend
+    build: ./map-project/backend
+    container_name: map-backend
     ports:
       - "8080:8080"
     environment:
@@ -42,10 +41,12 @@ services:
       - app-network
 
   frontend:
-    build: ./app/frontend
-    container_name: attack-frontend
+    image: nginx:alpine
+    container_name: map-frontend
     ports:
       - "80:80"
+    volumes:
+      - ./map-project:/usr/share/nginx/html
     depends_on:
       - backend
     networks:
