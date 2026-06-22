@@ -1,0 +1,67 @@
+-- 一旦、現在のデータをすべてリセットします
+TRUNCATE TABLE specialties;
+
+-- 56件のデータ（画像URL付き）を一括でインサートします
+INSERT INTO specialties (prefecture, season, name, description, local_dish, image_url) VALUES
+('ibaraki', 'spring', '久慈川のサケ（稚魚）', '春に遡上する稚魚。', 'サケの稚魚料理', 'https://cdn-ak.f.st-hatena.com/images/fotolife/t/taueki2025/20250423/20250423024719.jpg'),
+('ibaraki', 'spring', '常陸たけのこ', '茨城県南部を中心に産出される、えぐみが少なく柔らかなたけのこ。', 'たけのこご飯、若竹煮', 'https://th.bing.com/th/id/OIP.-Oq57wPKz2vDKm9wzcwJTOHaE8?w=277&h=185&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3'),
+('ibaraki', 'summer', 'メロン', '生産量日本一。', 'メロンの漬物', 'https://th.bing.com/th/id/OIP.RMpA0YHGqqXMqYV8ieDjiAHaFF?w=228&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3'),
+('ibaraki', 'summer', '岩ガキ', '鹿島灘で獲れる大ぶりなカキ。', '生ガキ', 'https://image.jimcdn.com/app/cms/image/transf/dimension=2048x2048:format=jpg/path/sda8a0c5a5b948ba5/image/i0f4ae3284911cb81/version/1591067379/image.jpg'),
+('ibaraki', 'autumn', '常陸秋そば', '香り高く甘みが強い。', 'けんちんそば', 'https://th.bing.com/th/id/OIP.SI4RUJnrHeVZ3JQvw1jyjAHaDz?w=298&h=179&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3'),
+('ibaraki', 'autumn', 'レンコン', '霞ヶ浦周辺で栽培。', 'レンコンのきんぴら', 'https://renkon-channel.com/wp-content/uploads/2020/08/renkon.jpg'),
+('ibaraki', 'winter', 'アンコウ', '冬の味覚の王様。', 'あんこう鍋', 'https://th.bing.com/th/id/OIP.d2VacxWvEPxyjFk1SGCr7QHaE7?w=251&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3'),
+('ibaraki', 'winter', '干し芋', 'ひたちなか市が主産地。', 'そのまま、または炙り', 'https://www.nichinoutobita.com/wp-content/uploads/2024/09/test2.jpg'),
+
+('tochigi', 'spring', 'とちおとめ（いちご）', '日本を代表する品種。', 'いちご大福', 'https://web-japan.org/kidsweb/img/local_tochiotome_pic01.jpg'),
+('tochigi', 'spring', 'アスパラガス', '甘みが強く瑞々しい。', 'アスパラの和え物', 'https://farm-next.jp/wp/wp-content/uploads/2019/08/00100IPORTRAIT_00100_BURST20190729162701383_COVER.jpg'),
+('tochigi', 'summer', '鮎', '那珂川の清流で育つ。', '鮎の塩焼き', 'https://www.kurobane-kankouyana.com/images/ayueat/yakiayu.jpg'),
+('tochigi', 'summer', 'かんぴょう', '国内シェアの大半。', 'かんぴょうの卵とじ', 'https://cf.furunavi.jp/product_images/465/644327/4.jpg'),
+('tochigi', 'autumn', '梨（新高など）', '大玉でジューシー。', '梨のデザート', 'https://belluna-gourmet.com/ito/product/gourmet/1087/1087064/1087064_a.jpg'),
+('tochigi', 'autumn', '里芋', 'ねっとりした食感。', 'いも串', 'https://img.kurashinista.jp/get/2023/08/27/6d14d90b1f10772483e2d2736c8dfad8.jpg'),
+('tochigi', 'winter', '宇都宮のニラ', '肉厚で香りが強い。', 'ニラそば・餃子', 'https://sobagiri.com/wp-content/uploads/2024/05/751e61250ab2562ad01a075fb6fdba32.jpg'),
+('tochigi', 'winter', 'うど', '春を先取りする冬の軟化栽培。', 'うどの酢味噌和え', 'https://www.fashion96.com/wp-content/uploads/2016/02/udo002.jpg'),
+
+('gunma', 'spring', 'ふき', '山菜の代表。', 'ふきの煮物', 'https://tsel.mm.bing.net/th/id/OIP.Q2zxxvdTJpRQd90JGqJ-uwHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3'),
+('gunma', 'spring', '春採りキャベツ', '嬬恋村周辺で生産。', 'おっきりこみの具', 'https://preview.aflo.com/Ggkx9V77ke8F/aflo_207065985.jpg'),
+('gunma', 'summer', '枝豆', '実が詰まり甘い。', '茹で枝豆', 'https://www.muji.com/public/media/img/item/0280001012157_org.jpg'),
+('gunma', 'summer', '十石みそ', '上野村の特産。', 'つみっこ（すいとん）', 'https://th.bing.com/th/id/R.7275bc5d3e03e254c701d923b552720d?rik=8wQYy%2bQISEbDOA&riu=http%3a%2f%2fwww.uenomura.jp%2ftourism%2fbuy%2Fimages%2fimg_miso2.jpg&ehk=8xiN5Ytzk7Crd2RDpua%2fPHT%2bYtEbEf0Qf8o1yWTh3nU%3d&risl=&pid=ImgRaw&r=0'),
+('gunma', 'autumn', '舞茸', '香りと食感が良い。', '舞茸ごはん', 'https://www.jagunma.or.jp/wp-content/uploads/mas4005.jpg'),
+('gunma', 'autumn', 'ギンヒカリ（虹鱒）', '群馬最高級の魚。', '刺身、塩焼き', 'https://prtimes.jp/i/10726/3/resize/d10726-3-816511-0.jpg'),
+('gunma', 'winter', '下仁田ネギ', '加熱で甘みが激増。', '下仁田ネギのすき焼き', 'https://img.hachimenroppi.com/images/item/11/30/113011/CIAspFqM'),
+('gunma', 'winter', 'こんにゃく', '生産量日本一。', '味噌田楽', 'https://image.rakuten.co.jp/f102083-shibukawa/cabinet/f4h-0001-0199/r_f4h_0193_2.jpg'),
+
+('saitama', 'spring', 'のらぼう菜', '江戸時代から続く伝統野菜。', 'のらぼう菜のお浸し', 'https://www.pref.saitama.lg.jp/images/159114/mg_5287.jpg'),
+('saitama', 'spring', 'ブロッコリー', '深谷市などで盛ん。', 'ブロッコリーの和え物', 'https://www.pref.saitama.lg.jp/images/159106/mg_5313.jpg'),
+('saitama', 'summer', '深谷ねぎ（夏）', '薬味に最適なしっかりした味。', '冷や汁うどん', 'https://kisetsumimiyori.com/wp-content/uploads/2020/06/d4df991a772f2c89c2174922fabd5ab8.jpg'),
+('saitama', 'summer', '秩父のプラム', '秩父地域の寒暖差で甘みが凝縮された果実。', 'そのまま、またはジャム', 'https://stat.ameba.jp/user_images/20170701/14/kurosawahideyukil/c7/46/j/o0320024013972710183.jpg'),
+('saitama', 'autumn', 'さつまいも', '川越が有名。', 'さつまいもチップス、甘露煮', 'https://organic.co.jp/wp-content/uploads/2022/12/2022-imoya-20-61.jpg'),
+('saitama', 'autumn', '栗', '日高市などで生産。', '栗ごはん', 'https://www.ja-irumano.or.jp/wp-content/uploads/2022/09/DSC_2021-1024x684.jpg'),
+('saitama', 'winter', 'くわい', '縁起物として重宝。', 'くわいの含め煮', 'https://www.maff.go.jp/j/keikaku/syokubunka/k_ryouri/img/saitama_27_1.jpg'),
+('saitama', 'winter', '小松菜', '冬に甘みが増す。', '武蔵野うどんの具', 'https://www.pref.saitama.lg.jp/images/159097/komatsuna.jpg'),
+
+('chiba', 'spring', '菜花', '春の訪れを告げる。', '菜花の辛子和え', 'https://worldhouse.koori.jp/unau/files_thumbnail/page_Chiba_nabana_nabana_1_JPG_w748px_h501px.JPG'),
+('chiba', 'spring', '初カツオ', '勝浦港などで水揚げ。', 'なめろう', 'https://item-shopping.c.yimg.jp/i/n/ishizawa-food_sa00003_2'),
+('chiba', 'summer', 'スイカ', '富里市などが有名。', 'そのまま', 'https://m.media-amazon.com/images/I/71k7R+zenpL._AC_SL1478.jpg'),
+('chiba', 'summer', 'トウモロコシ', '甘みが強い。', '焼きトウモロコシ', 'https://tsel.mm.bing.net/th/id/OIP.Hv69dVwcS89PhEsAC8LnfgHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3'),
+('chiba', 'autumn', 'おおまさり（ゆで落花生用）', '千葉県が育成したゆで専用の巨大品種。', 'ゆで落花生', 'https://image-cdn.tabechoku.com/compress/images/c03045bda068e127d5de73d28618e6a5e785aca06921f0dd522d1986930a0e20.jpeg'),
+('chiba', 'autumn', '二十世紀梨 / 幸水', '松戸市が「二十世紀」の発祥地。シャリシャリした食感。', '梨ゼリー', 'https://shinmatsudo-zouen.com/wp-content/uploads/2020/11/main.jpg'),
+('chiba', 'winter', 'イワシ', '九十九里沖。', 'いわしのつみれ汁', 'https://www.tv-asahi.co.jp/gohan-japan_ar/backnumber/0104/img/al.jpg'),
+('chiba', 'winter', '大根', '銚子周辺の春大根（冬から出荷）。', '風呂吹き大根', 'https://agri-smart.jp/farmers/suzuki/wp-content/uploads/sites/16/2025/02/item_1.jpg'),
+
+('tokyo', 'spring', '明日葉', '伊豆諸島の特産。', '明日葉の天ぷら', 'https://www.t-marche.com/tripper/img/uploads/23acadfa34fe09ec.png'),
+('tokyo', 'spring', '東京うど', '立川などで生産。', 'うどの酢の物', 'https://www.e-recipe.site/wp-content/uploads/2020/02/aozora200201_udo.jpg'),
+('tokyo', 'summer', 'パッションフルーツ', '小笠原諸島の味。', 'ゼリー', 'https://img.resizing.net/projects/d63e60da-caac-477e-9622-4c9ca2a129b8/upload/images/9d5bcd24-40a3-4b97-9007-1be3ad9d1ef3/vp68YUwIRS6HCUTf0ZOcL1U7RvCX0LE3P/c_limit,w_1000/f_webp'),
+('tokyo', 'summer', '江戸前穴子', '東京湾で獲れる。', '穴子丼、天ぷら', 'https://tse2.mm.bing.net/th/id/OIP.2kMLaJev4V2s6h_tsDJ0zQHaE7?r=0&rs=1&pid=ImgDetMain&o=7&rm=3'),
+('tokyo', 'autumn', '内藤かぼちゃ', '江戸伝統野菜。', 'かぼちゃの煮物', 'https://tokyogrown.jp/resource/0/img/20200825100907571740603.jpg'),
+('tokyo', 'autumn', '練馬大根', 'たくあん用として有名。', '大根の煮込み', 'https://tokyogrown.jp/resource/672926/img/20201224134828625681287.jpg'),
+('tokyo', 'winter', '千住ねぎ', '煮崩れしにくい。', 'ねぎま鍋', 'https://tokyogrown.jp/resource/669911/img/20210814123346909085169.jpg'),
+('tokyo', 'winter', '伝統の小松菜', '江戸川区が発祥。', '江戸前雑煮', 'https://rinrinto.com/wp-content/uploads/2022/04/22947013_m-1024x768.jpg'),
+
+('kanagawa', 'spring', '湘南しらす', '相模湾の特産。', 'しらす丼', 'https://www.kashiwasuisan.com/images/shop/catalog/OT00006/sub/IMG_1956-1.jpg'),
+('kanagawa', 'spring', '足柄茶', '渋みと甘みのバランスが良い。', '茶飯', 'https://www.ashigaracha.co.jp/html/upload/save_image/0417103955_68005bebb45c1.jpg'),
+('kanagawa', 'summer', '三浦かぼちゃ', 'ホクホクとした食感。', 'かぼちゃのそぼろ煮', 'https://www.ja-town.com/img/goods/3601/attachment/3601-miu-fru-004_20250513172001019.jpeg'),
+('kanagawa', 'summer', '相模川の鮎', '歴史ある清流の魚。', '鮎の塩焼き', 'https://www.kanaloco.jp/archives/newsxml/2017/12/78d9511e1e036ed7e029f9c09e7ba2b3.jpg'),
+('kanagawa', 'autumn', '湘南ゴールド', '神奈川オリジナルの柑橘。', 'ジャム、デザート', 'https://tse4.mm.bing.net/th/id/OIP.KHjyBfyl5ivhmyaF2y-s5wHaEK?r=0&rs=1&pid=ImgDetMain&o=7&rm=3'),
+('kanagawa', 'autumn', '高座豚', '綾瀬市などの特産。', '豚の角煮', 'https://www.kanagawa-kankou.or.jp/storage/feature_picture/20240913021815_301214216_4776947977010705810766831176808328_n.jpg'),
+('kanagawa', 'winter', '小田原のキウイフルーツ', '温暖な気候を利用して栽培。追熟技術により冬に最も甘くなる。', 'そのまま、フルーツ和え', 'https://m.media-amazon.com/images/I/71CqKm+VvkL._AC_SL1500_.jpg'),
+('kanagawa', 'winter', 'キンメダイ', '小田原周辺。', '金目鯛の煮付け', 'https://bunbun-fishing.com/wp/wp-content/uploads/2023/11/IMG20231129174954-1024x577.jpg');

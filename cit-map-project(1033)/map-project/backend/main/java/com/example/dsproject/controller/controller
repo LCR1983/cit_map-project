@@ -1,0 +1,34 @@
+package com.example.dsproject.controller;
+
+import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+import java.util.*;
+
+@RestController
+@RequestMapping("/api")
+@CrossOrigin(origins = "*")
+public class SpecialtyController {
+
+    @PostMapping("/search")
+    public ResponseEntity<List<Map<String, object>>> searchSpecialties(@Request request) {
+        System.out.println("検索リクエスト受信: 季節=" + request.getSeason() + ", 地域=" + reqest.getPrefecture());
+
+        List<Map<String,Object>> results = new ArrayList<>();
+        Map<String,Object> item1 = new HashMap<>();
+        item1.put("id", 24);
+        item1.put("name", "下仁田ネギ(APIテスト)");
+        item1.put("imageSrc", "https://placehold.co/200x200/8c564b/white?text=下仁田ネギ");
+        results.add(item1);
+
+        return ResponseEntity.ok(results);
+    }
+
+    static class SearchRequest {
+        private String season;
+        private String prefecture;
+        public String getSeason() { return season; }
+        public void setSeason(String season) { this.season = season; }
+        public String getPrefecture() { return prefecture; }
+        public void setPrefecture(String prefecture) { this.prefecture = prefecture; }
+    }
+}

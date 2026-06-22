@@ -1,0 +1,22 @@
+# Git関連
+.git
+.gitignore
+
+# OSやシステムの一時ファイル
+.DS_Store
+Thumbs.db
+
+# エディタ・開発ツールの設定
+.vscode/
+.idea/
+*.suo
+*.user
+
+# Docker関連（自身をイメージ内に含めない）
+Dockerfile
+.dockerignore
+docker-compose*
+
+# ログファイルや不要なドキュメント
+*.log
+README.md
