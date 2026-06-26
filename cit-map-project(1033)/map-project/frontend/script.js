@@ -362,8 +362,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         hit.addEventListener('click', (e) => {
             const prefId = e.target.dataset.target;
-            // Navigate to prefecture detail page
-            window.location.href = `prefecture.html?pref=${prefId}`;
+            
+            // 検索セクションのドロップダウンを選択
+            const prefSelect = document.getElementById('pref-select');
+            if (prefSelect) {
+                prefSelect.value = prefId;
+                
+                // changeイベントを発火させて doSearch() を自動実行
+                prefSelect.dispatchEvent(new Event('change'));
+                
+                // 検索エリアまでスムーズにスクロール
+                const searchSection = document.getElementById('search-form');
+                if (searchSection) {
+                    searchSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
         });
     });
 
