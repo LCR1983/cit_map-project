@@ -1,0 +1,540 @@
+# 関東グルメマップ全食材（504件）画像マッピング一覧
+`data.js` に登録されている全504件の食材データについて、紐づく画像ファイル名とステータス（既存画像の使用 / 新規画像の生成 / 同一画像の使い回し）を整理した一覧表です。
+---
+## 📊 ステータス凡例
+- **[既存画像]**: すでに `images/` に画像があり、そのまま使えるもの。
+- **[既存で代用]**: すでに存在する特定の画像（例: `kanagawa_shirasu.jpg`）でカバーできるため、新規生成が不要なもの。
+- **[共通化]**: 同県内の別季節の同じ食材の画像を使い回すため、新規生成が不要なもの。
+- **[新規生成]**: 今回新しく生成・追加する必要があるもの。
+---
+## 1. 茨城県 (ibaraki) - 計72件
+| 季節 | 食材名 | カテゴリ | 紐づく画像ファイル名 | ステータス | 備考 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 春 | 水戸納豆 | 加工品 | `ibaraki_mitonatto.jpg` | **[新規生成]** | |
+| 春 | 春キャベツ | 野菜 | `ibaraki_harukyabetsu.jpg` | **[新規生成]** | |
+| 春 | しらす | 海鮮 | `ibaraki_shirasu.jpg` | **[新規生成]** | |
+| 春 | たけのこ | 野菜 | `ibaraki_takenoko.jpg` | **[新規生成]** | |
+| 春 | 菜の花 | 野菜 | `ibaraki_nanohana.jpg` | **[新規生成]** | |
+| 春 | ハマグリ | 海鮮 | `ibaraki_hamaguri.jpg` | **[新規生成]** | |
+| 春 | いちご | 果物 | `ibaraki_ichigo.jpg` | **[新規生成]** | |
+| 春 | わかさぎ | 海鮮 | `ibaraki_wakasagi.jpg` | **[新規生成]** | |
+| 春 | 春レタス | 野菜 | `ibaraki_haruretasu.jpg` | **[新規生成]** | |
+| 春 | 新玉ねぎ | 野菜 | `ibaraki_shintamanegi.jpg` | **[新規生成]** | |
+| 春 | 山菜 | 野菜 | `ibaraki_sansai.jpg` | **[新規生成]** | |
+| 春 | セリ | 野菜 | `ibaraki_seri.jpg` | **[新規生成]** | |
+| 春 | アスパラガス | 野菜 | `ibaraki_asuparagasu.jpg` | **[新規生成]** | |
+| 春 | 春大根 | 野菜 | `ibaraki_harudaikon.jpg` | **[新規生成]** | |
+| 春 | イワシ | 海鮮 | `ibaraki_iwashi.jpg` | **[新規生成]** | |
+| 春 | 鯛 | 海鮮 | `ibaraki_tai.jpg` | **[新規生成]** | |
+| 春 | よもぎ餅 | スイーツ | `ibaraki_yomogimochi.jpg` | **[新規生成]** | |
+| 春 | 梅加工品 | 加工品 | `ibaraki_umekakouhin.jpg` | **[新規生成]** | |
+| 夏 | メロン | 果物 | `ibaraki_meron.jpg` | **[新規生成]** | |
+| 夏 | スイカ | 果物 | `ibaraki_suika.jpg` | **[新規生成]** | |
+| 夏 | とうもろこし | 野菜 | `ibaraki_toumorokoshi.jpg` | **[新規生成]** | |
+| 夏 | 枝豆 | 野菜 | `ibaraki_edamame.jpg` | **[新規生成]** | |
+| 夏 | ピーマン | 野菜 | `ibaraki_piiman.jpg` | **[新規生成]** | |
+| 夏 | トマト | 野菜 | `ibaraki_tomato.jpg` | **[新規生成]** | |
+| 夏 | しじみ | 海鮮 | `ibaraki_shijimi.jpg` | **[新規生成]** | |
+| 夏 | アユ | 海鮮 | `ibaraki_ayu.jpg` | **[新規生成]** | |
+| 夏 | ナス | 野菜 | `ibaraki_nasu.jpg` | **[新規生成]** | |
+| 夏 | きゅうり | 野菜 | `ibaraki_kyuri.jpg` | **[新規生成]** | |
+| 夏 | ズッキーニ | 野菜 | `ibaraki_zukkini.jpg` | **[新規生成]** | |
+| 夏 | ゴーヤ | 野菜 | `ibaraki_goya.jpg` | **[新規生成]** | |
+| 夏 | 梨 | 果物 | `ibaraki_nashi.jpg` | **[新規生成]** | 秋の「梨」と共通 |
+| 夏 | ブルーベリー | 果物 | `ibaraki_buruberi.jpg` | **[新規生成]** | |
+| 夏 | かぼちゃ | 野菜 | `ibaraki_kabocha.jpg` | **[新規生成]** | 冬の「かぼちゃ」と共通 |
+| 夏 | オクラ | 野菜 | `ibaraki_okura.jpg` | **[新規生成]** | |
+| 夏 | 冷やし納豆そば | 郷土料理 | `ibaraki_hiyashinattosoba.jpg` | **[新規生成]** | |
+| 夏 | 常陸牛焼肉 | 郷土料理 | `ibaraki_hitachigyuyakiniku.jpg` | **[新規生成]** | |
+| 秋 | れんこん | 野菜 | `ibaraki_renkon.jpg` | **[新規生成]** | |
+| 秋 | 栗 | 果物 | `ibaraki_kuri.jpg` | **[新規生成]** | |
+| 秋 | さつまいも | 野菜 | `ibaraki_satsumaimo.jpg` | **[新規生成]** | |
+| 秋 | 梨 | 果物 | `ibaraki_nashi.jpg` | **[共通化]** | 夏の「梨」画像を使用 |
+| 秋 | 新米 | 米 | `ibaraki_shinmai.jpg` | **[新規生成]** | |
+| 秋 | 舞茸 | きのこ | `ibaraki_maitake.jpg` | **[新規生成]** | |
+| 秋 | 常陸秋そば | 郷土料理 | `ibaraki_hitachiakisoba.jpg` | **[新規生成]** | |
+| 秋 | 柿 | 果物 | `ibaraki_kaki.jpg` | **[新規生成]** | |
+| 秋 | しいたけ | きのこ | `ibaraki_shiitake.jpg` | **[新規生成]** | |
+| 秋 | 里芋 | 野菜 | `ibaraki_satoimo.jpg` | **[新規生成]** | |
+| 秋 | ごぼう | 野菜 | `ibaraki_gobou.jpg` | **[新規生成]** | |
+| 秋 | さんま | 海鮮 | `ibaraki_sanma.jpg` | **[新規生成]** | |
+| 秋 | 秋ナス | 野菜 | `ibaraki_akinasu.jpg` | **[新規生成]** | |
+| 秋 | 落花生 | 果物 | `ibaraki_rakkasei.jpg` | **[新規生成]** | |
+| 秋 | ぶどう | 果物 | `ibaraki_budou.jpg` | **[新規生成]** | |
+| 秋 | きのこ汁 | 郷土料理 | `ibaraki_kinokojiru.jpg` | **[新規生成]** | |
+| 秋 | 栗おこわ | 米 | `ibaraki_kuriokowa.jpg` | **[新規生成]** | |
+| 秋 | 干し芋 | 加工品 | `ibaraki_hoshiimo.jpg` | **[新規生成]** | 冬の「ほしいも」と共通 |
+| 冬 | あんこう | 海鮮 | `ibaraki_ankou.jpg` | **[新規生成]** | |
+| 冬 | ほしいも | 加工品 | `ibaraki_hoshiimo.jpg` | **[共通化]** | 秋の「干し芋」画像を使用 |
+| 冬 | 白菜 | 野菜 | `ibaraki_hakusai.jpg` | **[新規生成]** | |
+| 冬 | ねぎ | 野菜 | `ibaraki_negi.jpg` | **[新規生成]** | |
+| 冬 | 常陸牛 | 肉 | `ibaraki_hitachigyu.jpg` | **[新規生成]** | |
+| 冬 | ブリ | 海鮮 | `ibaraki_buri.jpg` | **[新規生成]** | |
+| 冬 | 大根 | 野菜 | `ibaraki_daikon.jpg` | **[新規生成]** | |
+| 冬 | かぼちゃ | 野菜 | `ibaraki_kabocha.jpg` | **[共通化]** | 夏の「かぼちゃ」画像を使用 |
+| 冬 | 小松菜 | 野菜 | `ibaraki_komatsuna.jpg` | **[新規生成]** | |
+| 冬 | ほうれん草 | 野菜 | `ibaraki_hourensou.jpg` | **[新規生成]** | |
+| 冬 | あんこう鍋 | 郷土料理 | `ibaraki_ankounabe.jpg` | **[新規生成]** | |
+| 冬 | けんちん汁 | 郷土料理 | `ibaraki_kenchinjiru.jpg` | **[新規生成]** | |
+| 冬 | 干し大根 | 加工品 | `ibaraki_hoshidaikon.jpg` | **[新規生成]** | |
+| 冬 | わかさぎ唐揚げ | 郷土料理 | `ibaraki_wakasagikaraage.jpg` | **[新規生成]** | |
+| 冬 | 冬キャベツ | 野菜 | `ibaraki_fuyukyabetsu.jpg` | **[新規生成]** | |
+| 冬 | 鍋用きのこ | きのこ | `ibaraki_nabeyoukinoko.jpg` | **[新規生成]** | |
+| 冬 | 納豆汁 | 郷土料理 | `ibaraki_nattojiru.jpg` | **[新規生成]** | |
+| 冬 | レンコン団子 | 郷土料理 | `ibaraki_renkondango.jpg` | **[新規生成]** | |
+---
+## 2. 栃木県 (tochigi) - 計72件
+| 季節 | 食材名 | カテゴリ | 紐づく画像ファイル名 | ステータス | 備考 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 春 | とちおとめ | 果物 | `tochigi_tochiotome.jpg` | **[新規生成]** | |
+| 春 | スカイベリー | 果物 | `tochigi_skyberry.jpg` | **[新規生成]** | |
+| 春 | 山菜 | 野菜 | `tochigi_sansai.jpg` | **[新規生成]** | |
+| 春 | アスパラガス | 野菜 | `tochigi_asuparagasu.jpg` | **[新規生成]** | |
+| 春 | にら | 野菜 | `tochigi_nira.jpg` | **[新規生成]** | |
+| 春 | たけのこ | 野菜 | `tochigi_takenoko.jpg` | **[新規生成]** | |
+| 春 | 鮎 | 海鮮 | `tochigi_ayu.jpg` | **[新規生成]** | |
+| 春 | 日光湯葉 | 加工品 | `tochigi_nikkoyuba.jpg` | **[新規生成]** | |
+| 春 | 春レタス | 野菜 | `tochigi_haruretasu.jpg` | **[新規生成]** | |
+| 春 | 春大根 | 野菜 | `tochigi_harudaikon.jpg` | **[新規生成]** | |
+| 春 | 菜の花 | 野菜 | `tochigi_nanohana.jpg` | **[新規生成]** | |
+| 春 | いちごジャム | 加工品 | `tochigi_ichigojam.jpg` | **[新規生成]** | |
+| 春 | いちご大福 | スイーツ | `tochigi_ichigodaifuku.jpg` | **[新規生成]** | |
+| 春 | 日光ゆば刺し | 郷土料理 | `tochigi_nikkoyubasashi.jpg` | **[新規生成]** | |
+| 春 | 春キャベツ | 野菜 | `tochigi_harukyabetsu.jpg` | **[新規生成]** | |
+| 春 | わらび | 野菜 | `tochigi_warabi.jpg` | **[新規生成]** | |
+| 春 | こごみ | 野菜 | `tochigi_kogomi.jpg` | **[新規生成]** | |
+| 春 | 栃木和牛 | 肉 | `tochigi_tochigiwagyu.jpg` | **[新規生成]** | 秋の「栃木和牛」と共通 |
+| 夏 | かんぴょう | 加工品 | `tochigi_kanpyo.jpg` | **[新規生成]** | |
+| 夏 | トマト | 野菜 | `tochigi_tomato.jpg` | **[新規生成]** | |
+| 夏 | きゅうり | 野菜 | `tochigi_kyuri.jpg` | **[新規生成]** | |
+| 夏 | 枝豆 | 野菜 | `tochigi_edamame.jpg` | **[新規生成]** | |
+| 夏 | とうもろこし | 野菜 | `tochigi_toumorokoshi.jpg` | **[新規生成]** | |
+| 夏 | ブルーベリー | 果物 | `tochigi_blueberry.jpg` | **[新規生成]** | |
+| 夏 | ヤシオマス | 海鮮 | `tochigi_yashiomasu.jpg` | **[新規生成]** | |
+| 夏 | なす | 野菜 | `tochigi_nasu.jpg` | **[新規生成]** | |
+| 夏 | 冷やし餃子 | 郷土料理 | `tochigi_hiyashigyoza.jpg` | **[新規生成]** | |
+| 夏 | 鮎の塩焼き | 郷土料理 | `tochigi_ayushioyaki.jpg` | **[新規生成]** | |
+| 夏 | ズッキーニ | 野菜 | `tochigi_zucchini.jpg` | **[新規生成]** | |
+| 夏 | オクラ | 野菜 | `tochigi_okura.jpg` | **[新規生成]** | |
+| 夏 | モロヘイヤ | 野菜 | `tochigi_moroheiya.jpg` | **[新規生成]** | |
+| 夏 | かき氷 | スイーツ | `tochigi_kakigori.jpg` | **[新規生成]** | |
+| 夏 | 冷やしゆば | 郷土料理 | `tochigi_hiyashiyuba.jpg` | **[新規生成]** | |
+| 夏 | 夏そば | 郷土料理 | `tochigi_natsusoba.jpg` | **[新規生成]** | |
+| 夏 | しそ | 野菜 | `tochigi_shiso.jpg` | **[新規生成]** | |
+| 夏 | 日光天然氷 | スイーツ | `tochigi_nikkotennenkori.jpg` | **[新規生成]** | |
+| 秋 | 梨 | 果物 | `tochigi_nashi.jpg` | **[新規生成]** | |
+| 秋 | ぶどう | 果物 | `tochigi_budou.jpg` | **[新規生成]** | |
+| 秋 | 舞茸 | きのこ | `tochigi_maitake.jpg` | **[新規生成]** | |
+| 秋 | 栃木和牛 | 肉 | `tochigi_tochigiwagyu.jpg` | **[共通化]** | 春の「栃木和牛」画像を使用 |
+| 秋 | 里芋 | 野菜 | `tochigi_satoimo.jpg` | **[新規生成]** | |
+| 秋 | 新そば | 郷土料理 | `tochigi_shinsoba.jpg` | **[新規生成]** | |
+| 秋 | りんご | 果物 | `tochigi_ringo.jpg` | **[新規生成]** | |
+| 秋 | 栗 | 果物 | `tochigi_kuri.jpg` | **[新規生成]** | |
+| 秋 | しいたけ | きのこ | `tochigi_shiitake.jpg` | **[新規生成]** | |
+| 秋 | さつまいも | 野菜 | `tochigi_satsumaimo.jpg` | **[新規生成]** | |
+| 秋 | かぼちゃ | 野菜 | `tochigi_kabocha.jpg` | **[新規生成]** | |
+| 秋 | 秋なす | 野菜 | `tochigi_akinasu.jpg` | **[新規生成]** | |
+| 秋 | きのこ汁 | 郷土料理 | `tochigi_kinokojiru.jpg` | **[新規生成]** | |
+| 秋 | 栗ご飯 | 米 | `tochigi_kurigohan.jpg` | **[新規生成]** | |
+| 秋 | 新米 | 米 | `tochigi_shinmai.jpg` | **[新規生成]** | |
+| 秋 | 日光まいたけ | きのこ | `tochigi_nikkomaitake.jpg` | **[新規生成]** | |
+| 秋 | そば団子 | スイーツ | `tochigi_sobadango.jpg` | **[新規生成]** | |
+| 秋 | りんごジュース | 加工品 | `tochigi_ringojuice.jpg` | **[新規生成]** | |
+| 冬 | 宇都宮餃子 | 郷土料理 | `tochigi_utsunomiyagyoza.jpg` | **[新規生成]** | |
+| 冬 | 大根 | 野菜 | `tochigi_daikon.jpg` | **[新規生成]** | |
+| 冬 | 白菜 | 野菜 | `tochigi_hakusai.jpg` | **[新規生成]** | |
+| 冬 | ねぎ | 野菜 | `tochigi_negi.jpg` | **[新規生成]** | |
+| 冬 | いちご | 果物 | `tochigi_ichigo.jpg` | **[新規生成]** | |
+| 冬 | ゆば鍋 | 郷土料理 | `tochigi_yubanabe.jpg` | **[新規生成]** | |
+| 冬 | 鹿肉 | 肉 | `tochigi_shikaniku.jpg` | **[新規生成]** | |
+| 冬 | こんにゃく | 加工品 | `tochigi_konnyaku.jpg` | **[新規生成]** | |
+| 冬 | ほうれん草 | 野菜 | `tochigi_hourensou.jpg` | **[新規生成]** | |
+| 冬 | 小松菜 | 野菜 | `tochigi_komatsuna.jpg` | **[新規生成]** | |
+| 冬 | けんちん汁 | 郷土料理 | `tochigi_kenchinjiru.jpg` | **[新規生成]** | |
+| 冬 | おでん種 | 加工品 | `tochigi_odentane.jpg` | **[新規生成]** | |
+| 冬 | 栃木和牛すき焼き | 郷土料理 | `tochigi_tochigiwagyusukiyaki.jpg` | **[新規生成]** | |
+| 冬 | 冬キャベツ | 野菜 | `tochigi_fuyukyabetsu.jpg` | **[新規生成]** | |
+| 冬 | 里芋煮 | 郷土料理 | `tochigi_satoimoni.jpg` | **[新規生成]** | |
+| 冬 | 味噌田楽 | 郷土料理 | `tochigi_misodengaku.jpg` | **[新規生成]** | |
+| 冬 | 日光湯豆腐 | 郷土料理 | `tochigi_nikkoyudofu.jpg` | **[新規生成]** | |
+| 冬 | 鍋用きのこ | きのこ | `tochigi_nabeyoukinoko.jpg` | **[新規生成]** | |
+---
+## 3. 群馬県 (gunma) - 計72件
+| 季節 | 食材名 | カテゴリ | 紐づく画像ファイル名 | ステータス | 備考 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 春 | 山菜 | 野菜 | `gunma_sansai.jpg` | **[新規生成]** | |
+| 春 | いちご | 果物 | `gunma_ichigo.jpg` | **[新規生成]** | |
+| 春 | 春キャベツ | 野菜 | `gunma_harukyabetsu.jpg` | **[新規生成]** | |
+| 春 | うど | 野菜 | `gunma_udo.jpg` | **[新規生成]** | |
+| 春 | わらび | 野菜 | `gunma_warabi.jpg` | **[新規生成]** | |
+| 春 | アスパラガス | 野菜 | `gunma_asuparagasu.jpg` | **[新規生成]** | |
+| 春 | 川魚 | 海鮮 | `gunma_kawazana.jpg` | **[新規生成]** | |
+| 春 | こんにゃく | 加工品 | `gunma_konnyakuimo.jpg` | **[既存画像]** | 冬の「こんにゃく」と共通 |
+| 春 | こごみ | 野菜 | `gunma_kogomi.jpg` | **[新規生成]** | |
+| 春 | 春レタス | 野菜 | `gunma_retasu.jpg` | **[既存画像]** | 夏の「高原レタス」と共通 |
+| 春 | 菜の花 | 野菜 | `gunma_nanohana.jpg` | **[新規生成]** | |
+| 春 | ふきのとう | 野菜 | `gunma_fukinotou.jpg` | **[新規生成]** | |
+| 春 | 梅加工品 | 加工品 | `gunma_umekakouhin.jpg` | **[新規生成]** | |
+| 春 | 春まいたけ | きのこ | `gunma_maitake.jpg` | **[既存で代用]** | 既存の舞茸画像を使用 |
+| 春 | 上州麦豚 | 肉 | `gunma_joshumugibuta.jpg` | **[新規生成]** | |
+| 春 | 温泉まんじゅう | スイーツ | `gunma_onsenmanju.jpg` | **[新規生成]** | |
+| 春 | 新玉ねぎ | 野菜 | `gunma_shintamanegi.jpg` | **[新規生成]** | |
+| 春 | 春大根 | 野菜 | `gunma_harudaikon.jpg` | **[新規生成]** | |
+| 夏 | 高原レタス | 野菜 | `gunma_retasu.jpg` | **[既存で代用]** | 春のレタス画像を使用 |
+| 夏 | 枝豆 | 野菜 | `gunma_edamame.jpg` | **[既存画像]** | |
+| 夏 | とうもろこし | 野菜 | `gunma_toumorokoshi.jpg` | **[新規生成]** | |
+| 夏 | トマト | 野菜 | `gunma_tomato.jpg` | **[新規生成]** | |
+| 夏 | きゅうり | 野菜 | `gunma_kyuri.jpg` | **[新規生成]** | |
+| 夏 | 桃 | 果物 | `gunma_momo.jpg` | **[新規生成]** | |
+| 夏 | 鮎 | 海鮮 | `gunma_ayu.jpg` | **[新規生成]** | |
+| 夏 | 水沢うどん | 郷土料理 | `gunma_mizusawaudon.jpg` | **[新規生成]** | |
+| 夏 | ブルーベリー | 果物 | `gunma_blueberry.jpg` | **[新規生成]** | |
+| 夏 | ズッキーニ | 野菜 | `gunma_zucchini.jpg` | **[新規生成]** | |
+| 夏 | なす | 野菜 | `gunma_nasu.jpg` | **[新規生成]** | |
+| 夏 | オクラ | 野菜 | `gunma_okura.jpg` | **[新規生成]** | |
+| 夏 | モロヘイヤ | 野菜 | `gunma_moroheiya.jpg` | **[新規生成]** | |
+| 夏 | 夏キャベツ | 野菜 | `gunma_natsukyabetsu.jpg` | **[新規生成]** | |
+| 夏 | 冷やしうどん | 郷土料理 | `gunma_hiyashiudon.jpg` | **[新規生成]** | |
+| 夏 | 焼きとうもろこし | 郷土料理 | `gunma_yakitoumorokoshi.jpg` | **[新規生成]** | |
+| 夏 | 高原野菜 | 野菜 | `gunma_kougenyasai.jpg` | **[新規生成]** | |
+| 夏 | こんにゃく冷麺 | 郷土料理 | `gunma_konnyakureimen.jpg` | **[新規生成]** | |
+| 秋 | まいたけ | きのこ | `gunma_maitake.jpg` | **[既存画像]** | |
+| 秋 | りんご | 果物 | `gunma_ringo.jpg` | **[既存画像]** | |
+| 秋 | 下仁田ねぎ | 野菜 | `gunma_shimonitanegi.jpg` | **[既存画像]** | 冬の「下仁田ねぎ」と共通 |
+| 秋 | 焼きまんじゅう | 郷土料理 | `gunma_yakimanju.jpg` | **[新規生成]** | |
+| 秋 | 舞茸鍋 | 郷土料理 | `gunma_maitakenabe.jpg` | **[新規生成]** | |
+| 秋 | 栗 | 果物 | `gunma_kuri.jpg` | **[新規生成]** | |
+| 秋 | さつまいも | 野菜 | `gunma_satsumaimo.jpg` | **[新規生成]** | |
+| 秋 | 梨 | 果物 | `gunma_nashi.jpg` | **[新規生成]** | |
+| 秋 | しいたけ | きのこ | `gunma_shiitake.jpg` | **[新規生成]** | |
+| 秋 | 新米 | 米 | `gunma_shinmai.jpg` | **[新規生成]** | |
+| 秋 | 山ぶどう | 果物 | `gunma_yamabudou.jpg` | **[新規生成]** | |
+| 秋 | 秋なす | 野菜 | `gunma_akinasu.jpg` | **[新規生成]** | |
+| 秋 | きのこ汁 | 郷土料理 | `gunma_kinokojiru.jpg` | **[新規生成]** | |
+| 秋 | こんにゃく味噌田楽 | 郷土料理 | `gunma_konnyakumiso_dengaku.jpg` | **[新規生成]** | |
+| 秋 | 上州牛 | 肉 | `gunma_joshugyu.jpg` | **[新規生成]** | 冬の「上州牛」と共通 |
+| 秋 | 里芋 | 野菜 | `gunma_satoimo.jpg` | **[新規生成]** | |
+| 秋 | ごぼう | 野菜 | `gunma_gobou.jpg` | **[新規生成]** | |
+| 秋 | 秋キャベツ | 野菜 | `gunma_akikyabetsu.jpg` | **[新規生成]** | |
+| 冬 | 下仁田ねぎ | 野菜 | `gunma_shimonitanegi.jpg` | **[共通化]** | 既存の下仁田ねぎ画像を使用 |
+| 冬 | こんにゃく | 加工品 | `gunma_konnyakuimo.jpg` | **[共通化]** | 既存のこんにゃく画像を使用 |
+| 冬 | やまといも | 野菜 | `gunma_yamatoimo.jpg` | **[既存画像]** | |
+| 冬 | 上州牛 | 肉 | `gunma_joshugyu.jpg` | **[共通化]** | 秋の「上州牛」画像を使用 |
+| 冬 | 白菜 | 野菜 | `gunma_hakusai.jpg` | **[新規生成]** | |
+| 冬 | みそおでん | 郷土料理 | `gunma_misooden.jpg` | **[新規生成]** | |
+| 冬 | 大根 | 野菜 | `gunma_daikon.jpg` | **[新規生成]** | |
+| 冬 | 鍋料理 | 郷土料理 | `gunma_nabelyouri.jpg` | **[新規生成]** | |
+| 冬 | ほうれん草 | 野菜 | `gunma_hourensou.jpg` | **[新規生成]** | |
+| 冬 | 小松菜 | 野菜 | `gunma_komatsuna.jpg` | **[新規生成]** | |
+| 冬 | ねぎ鍋 | 郷土料理 | `gunma_neginabe.jpg` | **[新規生成]** | |
+| 冬 | すき焼き | 郷土料理 | `gunma_sukiyaki.jpg` | **[新規生成]** | |
+| 冬 | けんちん汁 | 郷土料理 | `gunma_kenchinjiru.jpg` | **[新規生成]** | |
+| 冬 | 冬キャベツ | 野菜 | `gunma_fuyukyabetsu.jpg` | **[新規生成]** | |
+| 冬 | 上州麦豚鍋 | 郷土料理 | `gunma_joshumugibutanabe.jpg` | **[新規生成]** | |
+| 冬 | 湯豆腐 | 郷土料理 | `gunma_yudofu.jpg` | **[新規生成]** | |
+| 冬 | こんにゃく田楽 | 郷土料理 | `gunma_konnyakudengaku.jpg` | **[新規生成]** | |
+| 冬 | 鍋用きのこ | きのこ | `gunma_nabeyoukinoko.jpg` | **[新規生成]** | |
+---
+## 4. 埼玉県 (saitama) - 計72件
+| 季節 | 食材名 | カテゴリ | 紐づく画像ファイル名 | ステータス | 備考 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 春 | 狭山茶 | 野菜 | `saitama_sayamacha.jpg` | **[既存画像]** | 「狭山新茶」と共通 |
+| 春 | いちご | 果物 | `saitama_ichigo.jpg` | **[既存画像]** | |
+| 春 | 小松菜 | 野菜 | `saitama_komatsuna.jpg` | **[既存画像]** | 他の季節の小松菜と共通 |
+| 春 | たけのこ | 野菜 | `saitama_takenoko.jpg` | **[新規生成]** | |
+| 春 | 菜の花 | 野菜 | `saitama_nanohana.jpg` | **[新規生成]** | |
+| 春 | うど | 野菜 | `saitama_udo.jpg` | **[新規生成]** | |
+| 春 | 川越太麺焼きそば | 郷土料理 | `saitama_kawagoefutomenyakisoba.jpg` | **[新規生成]** | |
+| 春 | 山菜 | 野菜 | `saitama_sansai.jpg` | **[新規生成]** | |
+| 春 | 春キャベツ | 野菜 | `saitama_harukyabetsu.jpg` | **[新規生成]** | |
+| 春 | 春大根 | 野菜 | `saitama_harudaikon.jpg` | **[新規生成]** | |
+| 春 | 新玉ねぎ | 野菜 | `saitama_shintamanegi.jpg` | **[新規生成]** | |
+| 春 | アスパラガス | 野菜 | `saitama_asuparagasu.jpg` | **[新規生成]** | |
+| 春 | 草加せんべい | 加工品 | `saitama_sokasendei.jpg` | **[新規生成]** | 冬の「草加せんべい」と共通 |
+| 春 | 狭山新茶 | 野菜 | `saitama_sayamacha.jpg` | **[既存で代用]** | 既存の狭山茶画像を使用 |
+| 春 | いちご大福 | スイーツ | `saitama_ichigodaifuku.jpg` | **[新規生成]** | |
+| 春 | 春レタス | 野菜 | `saitama_haruretasu.jpg` | **[新規生成]** | |
+| 春 | わらび | 野菜 | `saitama_warabi.jpg` | **[新規生成]** | |
+| 春 | 秩父そば | 郷土料理 | `saitama_chichibusoba.jpg` | **[新規生成]** | |
+| 夏 | 枝豆 | 野菜 | `saitama_edamame.jpg` | **[既存画像]** | |
+| 夏 | きゅうり | 野菜 | `saitama_kyuri.jpg` | **[新規生成]** | |
+| 夏 | トマト | 野菜 | `saitama_tomato.jpg` | **[新規生成]** | |
+| 夏 | ブルーベリー | 果物 | `saitama_blueberry.jpg` | **[新規生成]** | |
+| 夏 | とうもろこし | 野菜 | `saitama_toumorokoshi.jpg` | **[新規生成]** | |
+| 夏 | 冷汁うどん | 郷土料理 | `saitama_hiyashijiruudon.jpg` | **[新規生成]** | |
+| 夏 | すいか | 果物 | `saitama_suika.jpg` | **[新規生成]** | |
+| 夏 | 梨 | 果物 | `saitama_nashi.jpg` | **[新規生成]** | 秋の「梨」と共通 |
+| 夏 | なす | 野菜 | `saitama_nasu.jpg` | **[新規生成]** | |
+| 夏 | オクラ | 野菜 | `saitama_okura.jpg` | **[新規生成]** | |
+| 夏 | ズッキーニ | 野菜 | `saitama_zucchini.jpg` | **[新規生成]** | |
+| 夏 | モロヘイヤ | 野菜 | `saitama_moroheiya.jpg` | **[新規生成]** | |
+| 夏 | 冷やし肉汁うどん | 郷土料理 | `saitama_hiyashinikujiruudon.jpg` | **[新規生成]** | |
+| 夏 | 夏野菜カレー | 郷土料理 | `saitama_natsuyasaicurry.jpg` | **[新規生成]** | |
+| 夏 | かき氷 | スイーツ | `saitama_kakigori.jpg` | **[新規生成]** | |
+| 夏 | 秩父天然氷 | スイーツ | `saitama_chichibutennenkori.jpg` | **[新規生成]** | |
+| 夏 | 焼きとうもろこし | 郷土料理 | `saitama_yakitoumorokoshi.jpg` | **[新規生成]** | |
+| 夏 | 夏小松菜 | 野菜 | `saitama_komatsuna.jpg` | **[既存で代用]** | 既存の小松菜画像を使用 |
+| 秋 | 川越いも | 野菜 | `saitama_satsumaimo.jpg` | **[既存で代用]** | 既存のさつまいも画像を使用 |
+| 秋 | さつまいも | 野菜 | `saitama_satsumaimo.jpg` | **[既存画像]** | |
+| 秋 | 深谷ねぎ | 野菜 | `saitama_fukayanegi.jpg` | **[既存画像]** | 冬の「深谷ねぎ」と共通 |
+| 秋 | 新米 | 米 | `saitama_shinmai.jpg` | **[新規生成]** | |
+| 秋 | ぶどう | 果物 | `saitama_budou.jpg` | **[新規生成]** | |
+| 秋 | 栗 | 果物 | `saitama_kuri.jpg` | **[新規生成]** | |
+| 秋 | 里芋 | 野菜 | `saitama_satoimo.jpg` | **[新規生成]** | |
+| 秋 | 豚みそ丼 | 郷土料理 | `saitama_butamisodon.jpg` | **[新規生成]** | |
+| 秋 | 梨 | 果物 | `saitama_nashi.jpg` | **[共通化]** | 夏の「梨」画像を使用 |
+| 秋 | 秋なす | 野菜 | `saitama_akinasu.jpg` | **[新規生成]** | |
+| 秋 | しいたけ | きのこ | `saitama_shiitake.jpg` | **[新規生成]** | |
+| 秋 | きのこ汁 | 郷土料理 | `saitama_kinokojiru.jpg` | **[新規生成]** | |
+| 秋 | 芋ようかん | スイーツ | `saitama_imoyokan.jpg` | **[新規生成]** | |
+| 秋 | 焼き芋 | スイーツ | `saitama_yakiimo.jpg` | **[新規生成]** | |
+| 秋 | 秩父きのこ | きのこ | `saitama_chichibukinoko.jpg` | **[新規生成]** | |
+| 秋 | ごぼう | 野菜 | `saitama_gobou.jpg` | **[新規生成]** | |
+| 秋 | 秋小松菜 | 野菜 | `saitama_akikomatsuna.jpg` | **[新規生成]** | |
+| 秋 | 栗ご飯 | 米 | `saitama_kurigohan.jpg` | **[新規生成]** | |
+| 冬 | 深谷ねぎ | 野菜 | `saitama_fukayanegi.jpg` | **[共通化]** | 既存の深谷ねぎ画像を使用 |
+| 冬 | 小松菜 | 野菜 | `saitama_komatsuna.jpg` | **[共通化]** | 既存の小松菜画像を使用 |
+| 冬 | 武州和牛 | 肉 | `saitama_bushuwagyu.jpg` | **[新規生成]** | |
+| 冬 | 鍋焼きうどん | 郷土料理 | `saitama_nabeyakiudon.jpg` | **[新規生成]** | |
+| 冬 | 白菜 | 野菜 | `saitama_hakusai.jpg` | **[新規生成]** | |
+| 冬 | 大根 | 野菜 | `saitama_daikon.jpg` | **[新規生成]** | |
+| 冬 | ほうれん草 | 野菜 | `saitama_hourensou.jpg` | **[新規生成]** | |
+| 冬 | 味噌ポテト | 郷土料理 | `saitama_misopotato.jpg` | **[新規生成]** | |
+| 冬 | ねぎ鍋 | 郷土料理 | `saitama_neginabe.jpg` | **[新規生成]** | |
+| 冬 | おっきりこみ | 郷土料理 | `saitama_okkirikomi.jpg` | **[新規生成]** | |
+| 冬 | けんちん汁 | 郷土料理 | `saitama_kenchinjiru.jpg` | **[新規生成]** | |
+| 冬 | 冬キャベツ | 野菜 | `saitama_fuyukyabetsu.jpg` | **[新規生成]** | |
+| 冬 | 里芋煮 | 郷土料理 | `saitama_satoimoni.jpg` | **[新規生成]** | |
+| 冬 | すき焼き | 郷土料理 | `saitama_sukiyaki.jpg` | **[新規生成]** | |
+| 冬 | 草加せんべい | 加工品 | `saitama_sokasendei.jpg` | **[共通化]** | 春の「草加せんべい」を使用 |
+| 冬 | 煮ぼうとう | 郷土料理 | `saitama_niboutou.jpg` | **[新規生成]** | |
+| 冬 | 冬小松菜 | 野菜 | `saitama_fuyukomatsuna.jpg` | **[新規生成]** | |
+| 冬 | おでん | 郷土料理 | `saitama_oden.jpg` | **[新規生成]** | |
+---
+## 5. 千葉県 (chiba) - 計72件
+| 季節 | 食材名 | カテゴリ | 紐づく画像ファイル名 | ステータス | 備考 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 春 | 房州びわ | 果物 | `chiba_biwa.jpg` | **[既存画像]** | |
+| 春 | たけのこ | 野菜 | `chiba_takenoko.jpg` | **[既存画像]** | |
+| 春 | 菜の花 | 野菜 | `chiba_nanohana.jpg` | **[新規生成]** | |
+| 春 | アジ | 海鮮 | `chiba_aji.jpg` | **[新規生成]** | |
+| 春 | ハマグリ | 海鮮 | `chiba_hamaguri.jpg` | **[新規生成]** | 冬の「はまぐり」と共通 |
+| 春 | いちご | 果物 | `chiba_ichigo.jpg` | **[新規生成]** | |
+| 春 | しらす | 海鮮 | `chiba_shirasu.jpg` | **[新規生成]** | |
+| 春 | 鯛 | 海鮮 | `chiba_tai.jpg` | **[新規生成]** | |
+| 春 | 春キャベツ | 野菜 | `chiba_harukyabetsu.jpg` | **[新規生成]** | |
+| 春 | 春大根 | 野菜 | `chiba_harudaikon.jpg` | **[新規生成]** | |
+| 春 | 新玉ねぎ | 野菜 | `chiba_shintamanegi.jpg` | **[新規生成]** | |
+| 春 | 海苔 | 海鮮 | `chiba_nori.jpg` | **[新規生成]** | 冬の「海苔」と共通 |
+| 春 | あさり | 海鮮 | `chiba_asari.jpg` | **[新規生成]** | |
+| 春 | サザエ | 海鮮 | `chiba_sazae.jpg` | **[新規生成]** | 夏の「サザエ」と共通 |
+| 春 | いわし | 海鮮 | `chiba_iwashi.jpg` | **[新規生成]** | 秋の「いわし」と共通 |
+| 春 | 菜花のおひたし | 郷土料理 | `chiba_nabananoohitashi.jpg` | **[新規生成]** | |
+| 春 | びわゼリー | スイーツ | `chiba_biwazelly.jpg` | **[新規生成]** | |
+| 春 | 春レタス | 野菜 | `chiba_haruretasu.jpg` | **[新規生成]** | |
+| 夏 | スイカ | 果物 | `chiba_suika.jpg` | **[既存画像]** | |
+| 夏 | 梨 | 果物 | `chiba_nashi.png` | **[既存画像]** | 秋の「梨」と共通 |
+| 夏 | とうもろこし | 野菜 | `chiba_toumorokoshi.jpg` | **[既存画像]** | |
+| 夏 | 枝豆 | 野菜 | `chiba_edamame.jpg` | **[新規生成]** | |
+| 夏 | 伊勢えび | 海鮮 | `chiba_iseebi.jpg` | **[既存画像]** | |
+| 夏 | トマト | 野菜 | `chiba_tomato.jpg` | **[新規生成]** | |
+| 夏 | かつお | 海鮮 | `chiba_katsuo.jpg` | **[新規生成]** | |
+| 夏 | サザエ | 海鮮 | `chiba_sazae.jpg` | **[共通化]** | 春の「サザエ」画像を使用 |
+| 夏 | なす | 野菜 | `chiba_nasu.jpg` | **[新規生成]** | |
+| 夏 | きゅうり | 野菜 | `chiba_kyuri.jpg` | **[新規生成]** | |
+| 夏 | オクラ | 野菜 | `chiba_okura.jpg` | **[新規生成]** | |
+| 夏 | ズッキーニ | 野菜 | `chiba_zucchini.jpg` | **[新規生成]** | |
+| 夏 | ブルーベリー | 果物 | `chiba_blueberry.jpg` | **[新規生成]** | |
+| 夏 | びわ加工品 | 加工品 | `chiba_biwakakouhin.jpg` | **[新規生成]** | |
+| 夏 | 冷やしなめろう | 郷土料理 | `chiba_hiyashinamerou.jpg` | **[新規生成]** | |
+| 夏 | 焼きとうもろこし | 郷土料理 | `chiba_yakitoumorokoshi.jpg` | **[新規生成]** | |
+| 夏 | 夏野菜 | 野菜 | `chiba_natsuyasai.jpg` | **[新規生成]** | |
+| 夏 | かき氷 | スイーツ | `chiba_kakigori.jpg` | **[新規生成]** | |
+| 秋 | 落花生 | 果物 | `chiba_rakkasei.jpg` | **[既存画像]** | |
+| 秋 | 新米 | 米 | `chiba_shinmai.jpg` | **[新規生成]** | |
+| 秋 | さんま | 海鮮 | `chiba_sanma.jpg` | **[新規生成]** | |
+| 秋 | 栗 | 果物 | `chiba_kuri.jpg` | **[新規生成]** | |
+| 秋 | さつまいも | 野菜 | `chiba_satsumaimo.jpg` | **[新規生成]** | |
+| 秋 | なめろう | 郷土料理 | `chiba_namerou.jpg` | **[新規生成]** | |
+| 秋 | いわし | 海鮮 | `chiba_iwashi.jpg` | **[共通化]** | 春の「いわし」画像を使用 |
+| 秋 | きのこ | きのこ | `chiba_kinoko.jpg` | **[新規生成]** | |
+| 秋 | 梨 | 果物 | `chiba_nashi.png` | **[共通化]** | 既存の梨画像を使用 |
+| 秋 | 柿 | 果物 | `chiba_kaki.jpg` | **[新規生成]** | |
+| 秋 | 秋なす | 野菜 | `chiba_akinasu.jpg` | **[新規生成]** | |
+| 秋 | 里芋 | 野菜 | `chiba_satoimo.jpg` | **[新規生成]** | |
+| 秋 | 落花生味噌 | 加工品 | `chiba_rakkaseimiso.jpg` | **[新規生成]** | |
+| 秋 | 焼き芋 | スイーツ | `chiba_yakiimo.jpg` | **[新規生成]** | |
+| 秋 | 栗ご飯 | 米 | `chiba_kurigohan.jpg` | **[新規生成]** | |
+| 秋 | 房総太巻き寿司 | 郷土料理 | `chiba_bosofutomakizushi.jpg` | **[新規生成]** | |
+| 秋 | 秋サバ | 海鮮 | `chiba_akisaba.jpg` | **[新規生成]** | |
+| 秋 | ごぼう | 野菜 | `chiba_gobou.jpg` | **[新規生成]** | |
+| 冬 | はまぐり | 海鮮 | `chiba_hamaguri.jpg` | **[共通化]** | 春の「ハマグリ」画像を使用 |
+| 冬 | ほうれん草 | 野菜 | `chiba_hourensou.jpg` | **[既存画像]** | |
+| 冬 | ブリ | 海鮮 | `chiba_buri.jpg` | **[新規生成]** | |
+| 冬 | 大根 | 野菜 | `chiba_daikon.jpg` | **[新規生成]** | |
+| 冬 | 鍋料理 | 郷土料理 | `chiba_nabelyouri.jpg` | **[新規生成]** | |
+| 冬 | 鯖 | 海鮮 | `chiba_saba.jpg` | **[新規生成]** | |
+| 冬 | 海苔 | 海鮮 | `chiba_nori.jpg` | **[共通化]** | 春の「海苔」画像を使用 |
+| 冬 | 金目鯛 | 海鮮 | `chiba_kinmedai.jpg` | **[新規生成]** | |
+| 冬 | 白菜 | 野菜 | `chiba_hakusai.jpg` | **[新規生成]** | |
+| 冬 | 小松菜 | 野菜 | `chiba_komatsuna.jpg` | **[新規生成]** | |
+| 冬 | いわしつみれ | 郷土料理 | `chiba_iwashitsumire.jpg` | **[新規生成]** | |
+| 冬 | なめろう茶漬け | 郷土料理 | `chiba_namerouchazuke.jpg` | **[新規生成]** | |
+| 冬 | さんが焼き | 郷土料理 | `chiba_sangayaki.jpg` | **[新規生成]** | |
+| 冬 | おでん | 郷土料理 | `chiba_oden.jpg` | **[新規生成]** | |
+| 冬 | 冬キャベツ | 野菜 | `chiba_fuyukyabetsu.jpg` | **[新規生成]** | |
+| 冬 | ねぎ | 野菜 | `chiba_negi.jpg` | **[新規生成]** | |
+| 冬 | あさり汁 | 郷土料理 | `chiba_asarijiru.jpg` | **[新規生成]** | |
+| 冬 | 海鮮鍋 | 郷土料理 | `chiba_kaisennabe.jpg` | **[新規生成]** | |
+---
+## 6. 東京都 (tokyo) - 計72件
+| 季節 | 食材名 | カテゴリ | 紐づく画像ファイル名 | ステータス | 備考 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 春 | 深川めし | 郷土料理 | `tokyo_fukagawameshi.jpg` | **[新規生成]** | |
+| 春 | 小松菜 | 野菜 | `tokyo_komatsuna.jpg` | **[新規生成]** | 冬の「小松菜」と共通 |
+| 春 | あさり | 海鮮 | `tokyo_asari.jpg` | **[新規生成]** | |
+| 春 | 桜鍋 | 郷土料理 | `tokyo_sakuranabe.jpg` | **[新規生成]** | |
+| 春 | 山菜 | 野菜 | `tokyo_sansai.jpg` | **[新規生成]** | |
+| 春 | 東京うど | 野菜 | `tokyo_tokyoudo.jpg` | **[新規生成]** | |
+| 春 | いちご | 果物 | `tokyo_ichigo.jpg` | **[新規生成]** | |
+| 春 | くさや | 加工品 | `tokyo_kusaya.jpg` | **[新規生成]** | 冬の「くさや」と共通 |
+| 春 | 春キャベツ | 野菜 | `tokyo_harukyabetsu.jpg` | **[新規生成]** | |
+| 春 | 春大根 | 野菜 | `tokyo_harudaikon.jpg` | **[新規生成]** | |
+| 春 | 新玉ねぎ | 野菜 | `tokyo_shintamanegi.jpg` | **[新規生成]** | |
+| 春 | 江戸前穴子 | 海鮮 | `tokyo_edomaeanago.jpg` | **[新規生成]** | |
+| 春 | 東京野菜 | 野菜 | `tokyo_tokyoyasai.jpg` | **[新規生成]** | |
+| 春 | 桜餅 | スイーツ | `tokyo_sakuramochi.jpg` | **[新規生成]** | |
+| 春 | よもぎ団子 | スイーツ | `tokyo_yomogidango.jpg` | **[新規生成]** | |
+| 春 | 春の天ぷら | 郷土料理 | `tokyo_harunotenpura.jpg` | **[新規生成]** | |
+| 春 | あさり汁 | 郷土料理 | `tokyo_asarijiru.jpg` | **[新規生成]** | |
+| 春 | 島しょ野菜 | 野菜 | `tokyo_shimashoyasai.jpg` | **[新規生成]** | |
+| 夏 | もんじゃ焼き | 郷土料理 | `tokyo_monjayaki.jpg` | **[新規生成]** | |
+| 夏 | 江戸前寿司 | 海鮮 | `tokyo_edomaezushi.jpg` | **[新規生成]** | 冬の「江戸前寿司」と共通 |
+| 夏 | 穴子 | 海鮮 | `tokyo_anago.jpg` | **[新規生成]** | |
+| 夏 | 枝豆 | 野菜 | `tokyo_edamame.jpg` | **[新規生成]** | |
+| 夏 | トマト | 野菜 | `tokyo_tomato.jpg` | **[新規生成]** | |
+| 夏 | ブルーベリー | 果物 | `tokyo_blueberry.jpg` | **[新規生成]** | |
+| 夏 | 冷やしそば | 郷土料理 | `tokyo_hiyashisoba.jpg` | **[新規生成]** | |
+| 夏 | 江戸前天丼 | 郷土料理 | `tokyo_edomaetendon.jpg` | **[新規生成]** | |
+| 夏 | きゅうり | 野菜 | `tokyo_kyuri.jpg` | **[新規生成]** | |
+| 夏 | なす | 野菜 | `tokyo_nasu.jpg` | **[新規生成]** | |
+| 夏 | オクラ | 野菜 | `tokyo_okura.jpg` | **[新規生成]** | |
+| 夏 | 島寿司 | 海鮮 | `tokyo_shimazushi.jpg` | **[新規生成]** | |
+| 夏 | ところてん | 加工品 | `tokyo_tokoroten.jpg` | **[新規生成]** | |
+| 夏 | かき氷 | スイーツ | `tokyo_kakigori.jpg` | **[新規生成]** | |
+| 夏 | 冷やし小松菜 | 郷土料理 | `tokyo_hiyashikomatsuna.jpg` | **[新規生成]** | |
+| 夏 | 夏野菜 | 野菜 | `tokyo_natsuyasai.jpg` | **[新規生成]** | |
+| 夏 | 天ざるそば | 郷土料理 | `tokyo_tenzarusoba.jpg` | **[新規生成]** | |
+| 夏 | 深川冷やし飯 | 郷土料理 | `tokyo_fukagawahiyashimeshi.jpg` | **[新規生成]** | |
+| 秋 | 柳川鍋 | 郷土料理 | `tokyo_yanagawanabe.jpg` | **[新規生成]** | |
+| 秋 | 新そば | 郷土料理 | `tokyo_shinsoba.jpg` | **[新規生成]** | |
+| 秋 | きのこ | きのこ | `tokyo_kinoko.jpg` | **[新規生成]** | |
+| 秋 | 栗 | 果物 | `tokyo_kuri.jpg` | **[新規生成]** | |
+| 秋 | 和菓子 | スイーツ | `tokyo_wagashi.jpg` | **[新規生成]** | |
+| 秋 | 東京X | 肉 | `tokyo_tokyox.jpg` | **[新規生成]** | 冬のしゃぶしゃぶと共通 |
+| 秋 | さつまいも | 野菜 | `tokyo_satsumaimo.jpg` | **[新規生成]** | |
+| 秋 | 梨 | 果物 | `tokyo_nashi.jpg` | **[新規生成]** | |
+| 秋 | 秋なす | 野菜 | `tokyo_akinasu.jpg` | **[新規生成]** | |
+| 秋 | しいたけ | きのこ | `tokyo_shiitake.jpg` | **[新規生成]** | |
+| 秋 | 新米 | 米 | `tokyo_shinmai.jpg` | **[新規生成]** | |
+| 秋 | 江戸前天ぷら | 郷土料理 | `tokyo_edomaetenpura.jpg` | **[新規生成]** | |
+| 秋 | 栗ようかん | スイーツ | `tokyo_kuriyokan.jpg` | **[新規生成]** | |
+| 秋 | 芋ようかん | スイーツ | `tokyo_imoyokan.jpg` | **[新規生成]** | |
+| 秋 | きのこそば | 郷土料理 | `tokyo_kinokosoba.jpg` | **[新規生成]** | |
+| 秋 | 秋刀魚 | 海鮮 | `tokyo_sanma.jpg` | **[新規生成]** | |
+| 秋 | ごぼう | 野菜 | `tokyo_gobou.jpg` | **[新規生成]** | |
+| 秋 | 島しょ焼酎 | 加工品 | `tokyo_shimashoshochu.jpg` | **[新規生成]** | |
+| 冬 | おでん | 郷土料理 | `tokyo_oden.jpg` | **[新規生成]** | |
+| 冬 | 小松菜 | 野菜 | `tokyo_komatsuna.jpg` | **[共通化]** | 春の小松菜画像を使用 |
+| 冬 | 海苔 | 海鮮 | `tokyo_nori.jpg` | **[新規生成]** | |
+| 冬 | ちゃんこ鍋 | 郷土料理 | `tokyo_chankonabe.jpg` | **[新規生成]** | |
+| 冬 | ブリ | 海鮮 | `tokyo_buri.jpg` | **[新規生成]** | |
+| 冬 | 大根 | 野菜 | `tokyo_daikon.jpg` | **[新規生成]** | |
+| 冬 | 甘酒 | スイーツ | `tokyo_amazake.jpg` | **[新規生成]** | |
+| 冬 | 江戸前寿司 | 海鮮 | `tokyo_edomaezushi.jpg` | **[共通化]** | 夏の寿司画像を使用 |
+| 冬 | 深川鍋 | 郷土料理 | `tokyo_fukagawanabe.jpg` | **[新規生成]** | |
+| 冬 | ねぎ | 野菜 | `tokyo_negi.jpg` | **[新規生成]** | |
+| 冬 | 白菜 | 野菜 | `tokyo_hakusai.jpg` | **[新規生成]** | |
+| 冬 | ほうれん草 | 野菜 | `tokyo_hourensou.jpg` | **[新規生成]** | |
+| 冬 | 湯豆腐 | 郷土料理 | `tokyo_yudofu.jpg` | **[新規生成]** | |
+| 冬 | 冬そば | 郷土料理 | `tokyo_fuyusoba.jpg` | **[新規生成]** | |
+| 冬 | あさり鍋 | 郷土料理 | `tokyo_asarinabe.jpg` | **[新規生成]** | |
+| 冬 | くさや | 加工品 | `tokyo_kusaya.jpg` | **[共通化]** | 春のくさや画像を使用 |
+| 冬 | 東京Xしゃぶしゃぶ | 郷土料理 | `tokyo_tokyoxshabushabu.jpg` | **[新規生成]** | |
+| 冬 | 小松菜鍋 | 郷土料理 | `tokyo_komatsunanabe.jpg` | **[新規生成]** | |
+---
+## 7. 神奈川県 (kanagawa) - 計72件
+| 季節 | 食材名 | カテゴリ | 紐づく画像ファイル名 | ステータス | 備考 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 春 | しらす | 海鮮 | `kanagawa_shirasu.jpg` | **[既存画像]** | 生しらす、しらす丼等と共通 |
+| 春 | 湘南ゴールド | 果物 | `kanagawa_shonangold.jpg` | **[既存画像]** | |
+| 春 | わかさぎ (わかめ) | 海鮮 | `kanagawa_wakame.jpg` | **[既存画像]** | data.jsの「わかめ」に対応 |
+| 春 | たけのこ | 野菜 | `kanagawa_takenoko.jpg` | **[新規生成]** | |
+| 春 | 鯵 | 海鮮 | `kanagawa_aji.jpg` | **[新規生成]** | |
+| 春 | サザエ | 海鮮 | `kanagawa_sazae.jpg` | **[新規生成]** | 夏の「サザエ」と共通 |
+| 春 | 建長汁 | 郷土料理 | `kanagawa_kenchinjiru.jpg` | **[新規生成]** | 冬のけんちん汁と共通 |
+| 春 | 春キャベツ | 野菜 | `kanagawa_kyabetsu.jpg` | **[既存画像]** | 冬キャベツと共通 |
+| 春 | 生しらす | 海鮮 | `kanagawa_shirasu.jpg` | **[既存で代用]** | 既存のしらす画像を使用 |
+| 春 | 春大根 | 野菜 | `kanagawa_daikon.jpg` | **[既存画像]** | 大根、三浦大根と共通 |
+| 春 | 菜の花 | 野菜 | `kanagawa_nanohana.jpg` | **[新規生成]** | |
+| 春 | 新玉ねぎ | 野菜 | `kanagawa_shintamanegi.jpg` | **[新規生成]** | |
+| 春 | 鎌倉野菜 | 野菜 | `kanagawa_yasai.jpg` | **[既存画像]** | 湘南・三浦野菜、秋鎌倉と共通 |
+| 春 | 小田原かまぼこ | 加工品 | `kanagawa_kamaboko.jpg` | **[既存画像]** | 冬のかまぼこと共通 |
+| 春 | 桜えび風かき揚げ | 郷土料理 | `kanagawa_sakuraebifu_kakiage.jpg` | **[新規生成]** | |
+| 春 | 湘南しらす丼 | 郷土料理 | `kanagawa_shirasu.jpg` | **[既存で代用]** | 既存のしらす画像を使用 |
+| 春 | よもぎ餅 | スイーツ | `kanagawa_yomogimochi.jpg` | **[新規生成]** | |
+| 春 | 三浦春野菜 | 野菜 | `kanagawa_yasai.jpg` | **[既存で代用]** | 既存の野菜画像を使用 |
+| 夏 | 三崎マグロ | 海鮮 | `kanagawa_maguro.jpg` | **[既存画像]** | 冬のマグロ鍋と共通 |
+| 夏 | トマト | 野菜 | `kanagawa_tomato.jpg` | **[新規生成]** | |
+| 夏 | 枝豆 | 野菜 | `kanagawa_edamame.jpg` | **[新規生成]** | |
+| 夏 | きゅうり | 野菜 | `kanagawa_kyuri.jpg` | **[新規生成]** | |
+| 夏 | スイカ | 果物 | `kanagawa_suika.jpg` | **[新規生成]** | |
+| 夏 | しらす丼 | 郷土料理 | `kanagawa_shirasu.jpg` | **[既存で代用]** | 既存のしらす画像を使用 |
+| 夏 | 生しらす | 海鮮 | `kanagawa_shirasu.jpg` | **[既存で代用]** | 既存のしらす画像を使用 |
+| 夏 | かき氷 | スイーツ | `kanagawa_kakigori.jpg` | **[新規生成]** | |
+| 夏 | なす | 野菜 | `kanagawa_nasu.jpg` | **[新規生成]** | |
+| 夏 | オクラ | 野菜 | `kanagawa_okura.jpg` | **[新規生成]** | |
+| 夏 | ズッキーニ | 野菜 | `kanagawa_zucchini.jpg` | **[新規生成]** | |
+| 夏 | サザエ | 海鮮 | `kanagawa_sazae.jpg` | **[共通化]** | 春の「サザエ」画像を使用 |
+| 夏 | アジフライ | 郷土料理 | `kanagawa_ajifurai.jpg` | **[新規生成]** | |
+| 夏 | 冷やし海鮮丼 | 郷土料理 | `kanagawa_hiyashikaisendon.jpg` | **[新規生成]** | |
+| 夏 | 湘南野菜 | 野菜 | `kanagawa_yasai.jpg` | **[既存で代用]** | 既存の野菜画像を使用 |
+| 夏 | 夏みかん加工品 | 加工品 | `kanagawa_natsumikankakouhin.jpg` | **[新規生成]** | |
+| 夏 | とうもろこし | 野菜 | `kanagawa_toumorokoshi.jpg` | **[新規生成]** | |
+| 夏 | 三浦夏野菜 | 野菜 | `kanagawa_yasai.jpg` | **[既存で代用]** | 既存の野菜画像を使用 |
+| 秋 | 三浦大根 | 野菜 | `kanagawa_daikon.jpg` | **[既存で代用]** | 既存の大根画像を使用 |
+| 秋 | 梨 | 果物 | `kanagawa_nashi.jpg` | **[新規生成]** | |
+| 秋 | さつまいも | 野菜 | `kanagawa_satsumaimo.jpg` | **[新規生成]** | |
+| 秋 | 牛鍋 | 郷土料理 | `kanagawa_gyunabe.jpg` | **[新規生成]** | |
+| 秋 | サンマ | 海鮮 | `kanagawa_sanma.jpg` | **[新規生成]** | |
+| 秋 | 栗 | 果物 | `kanagawa_kuri.jpg` | **[新規生成]** | |
+| 秋 | しめじ | きのこ | `kanagawa_shimeji.jpg` | **[新規生成]** | |
+| 秋 | 鎌倉野菜 | 野菜 | `kanagawa_yasai.jpg` | **[既存で代用]** | 既存の野菜画像を使用 |
+| 秋 | 秋なす | 野菜 | `kanagawa_akinasu.jpg` | **[新規生成]** | |
+| 秋 | 新米 | 米 | `kanagawa_shinmai.jpg` | **[新規生成]** | |
+| 秋 | しいたけ | きのこ | `kanagawa_shiitake.jpg` | **[新規生成]** | |
+| 秋 | ごぼう | 野菜 | `kanagawa_gobou.jpg` | **[新規生成]** | |
+| 秋 | 芋ようかん | スイーツ | `kanagawa_imoyokan.jpg` | **[新規生成]** | |
+| 秋 | 栗ご飯 | 米 | `kanagawa_kurigohan.jpg` | **[新規生成]** | |
+| 秋 | 小田原干物 | 郷土料理 | `kanagawa_odawarahimono.jpg` | **[新規生成]** | |
+| 秋 | きのこ汁 | 郷土料理 | `kanagawa_kinokojiru.jpg` | **[新規生成]** | |
+| 秋 | 湘南ポーク | 肉 | `kanagawa_shonanpork.jpg` | **[新規生成]** | |
+| 秋 | 秋しらす | 海鮮 | `kanagawa_shirasu.jpg` | **[既存で代用]** | 既存のしらす画像を使用 |
+| 冬 | かまぼこ | 加工品 | `kanagawa_kamaboko.jpg` | **[既存で代用]** | 既存のかまぼこ画像を使用 |
+| 冬 | 鍋料理 | 郷土料理 | `kanagawa_nabelyouri.jpg` | **[新規生成]** | |
+| 冬 | ブリ | 海鮮 | `kanagawa_buri.jpg` | **[新規生成]** | |
+| 冬 | 大根 | 野菜 | `kanagawa_daikon.jpg` | **[既存で代用]** | 既存の大根画像を使用 |
+| 冬 | 湘南しらす | 海鮮 | `kanagawa_shirasu.jpg` | **[既存で代用]** | 既存のしらす画像を使用 |
+| 冬 | 海鮮丼 | 郷土料理 | `kanagawa_kaisendon.jpg` | **[新規生成]** | |
+| 冬 | 厚木シロコロ | 肉 | `kanagawa_atsugishirokoro.jpg` | **[新規生成]** | |
+| 冬 | 白菜 | 野菜 | `kanagawa_hakusai.jpg` | **[新規生成]** | |
+| 冬 | 三浦大根 | 野菜 | `kanagawa_daikon.jpg` | **[既存で代用]** | 既存の大根画像を使用 |
+| 冬 | 小松菜 | 野菜 | `kanagawa_komatsuna.jpg` | **[新規生成]** | |
+| 冬 | ほうれん草 | 野菜 | `kanagawa_hourensou.jpg` | **[新規生成]** | |
+| 冬 | 湯豆腐 | 郷土料理 | `kanagawa_yudofu.jpg` | **[新規生成]** | |
+| 冬 | けんちん汁 | 郷土料理 | `kanagawa_kenchinjiru.jpg` | **[共通化]** | 春の「建長汁」画像を使用 |
+| 冬 | 三崎マグロ鍋 | 郷土料理 | `kanagawa_maguro.jpg` | **[既存で代用]** | 既存のマグロ画像を使用 |
+| 冬 | おでん | 郷土料理 | `kanagawa_oden.jpg` | **[新規生成]** | |
+| 冬 | 金目鯛 | 海鮮 | `kanagawa_kinmedai.jpg` | **[新規生成]** | |
+| 冬 | 冬キャベツ | 野菜 | `kanagawa_kyabetsu.jpg` | **[既存で代用]** | 既存のキャベツ画像を使用 |
+| 冬 | 海鮮鍋 | 郷土料理 | `kanagawa_kaisennabe.jpg` | **[新規生成]** | |
