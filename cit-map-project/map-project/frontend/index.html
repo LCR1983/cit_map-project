@@ -18,7 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=5">
     <!-- marked.js: AIの回答をマークダウンとして綺麗にレンダリング -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
@@ -101,20 +101,23 @@
                     class="cit-logo" onerror="this.style.display='none'">
             </div>
             <div class="settings-area">
-                <div class="setting-group">
-                    <span class="setting-label" data-i18n="lang">Language</span>
-                    <button id="lang-jp" class="setting-btn active" aria-pressed="true">日本語</button>
-                    <button id="lang-en" class="setting-btn" aria-pressed="false">English</button>
-                </div>
-                <div class="setting-group">
-                    <span class="setting-label" data-i18n="fontSize">文字サイズ</span>
-                    <button id="font-std" class="setting-btn active" data-i18n="std" aria-pressed="true">標準</button>
-                    <button id="font-lg" class="setting-btn" data-i18n="large" aria-pressed="false">拡大</button>
-                </div>
-                <div class="setting-group">
-                    <span class="setting-label" data-i18n="bgColor">背景色</span>
-                    <button id="color-dark" class="setting-btn active" data-i18n="black" aria-pressed="true">黒</button>
-                    <button id="color-light" class="setting-btn" data-i18n="white" aria-pressed="false">白</button>
+                <button id="mobile-settings-toggle" class="mobile-settings-toggle btn-ghost" aria-expanded="false" aria-label="設定を開閉">⚙️</button>
+                <div id="settings-dropdown" class="settings-dropdown">
+                    <div class="setting-group">
+                        <span class="setting-label" data-i18n="lang">Language</span>
+                        <button id="lang-jp" class="setting-btn active" aria-pressed="true">日本語</button>
+                        <button id="lang-en" class="setting-btn" aria-pressed="false">English</button>
+                    </div>
+                    <div class="setting-group">
+                        <span class="setting-label" data-i18n="fontSize">文字サイズ</span>
+                        <button id="font-std" class="setting-btn active" data-i18n="std" aria-pressed="true">標準</button>
+                        <button id="font-lg" class="setting-btn" data-i18n="large" aria-pressed="false">拡大</button>
+                    </div>
+                    <div class="setting-group">
+                        <span class="setting-label" data-i18n="bgColor">背景色</span>
+                        <button id="color-dark" class="setting-btn active" data-i18n="black" aria-pressed="true">黒</button>
+                        <button id="color-light" class="setting-btn" data-i18n="white" aria-pressed="false">白</button>
+                    </div>
                 </div>
                 <button id="fav-open-btn" class="fav-header-btn" aria-label="お気に入り">❤️<span id="fav-count"
                         class="fav-badge" hidden>0</span></button>
@@ -285,7 +288,7 @@
                         <div class="filter-group">
                             <label for="keyword-input" data-i18n="kwLabel">🔍 キーワード:</label>
                             <input type="text" id="keyword-input" class="neon-input" placeholder="例: いちご、マグロ..."
-                                style="min-width:160px;" data-i18n-placeholder="kwPlaceholder">
+                                data-i18n-placeholder="kwPlaceholder">
                         </div>
                         <button type="submit" id="search-button" class="neon-button" data-i18n="searchBtn">グルメを発見する</button>
                     </div>
@@ -327,7 +330,7 @@
                             <button id="gps-btn" class="neon-button" data-i18n="gpsBtn">現在地を取得</button>
                             <div style="display:flex; flex-grow:1;">
                                 <input type="text" id="gps-manual-input" class="neon-input" placeholder="駅名・地名 (例: 大宮)"
-                                    style="flex-grow:1; border-top-right-radius:0; border-bottom-right-radius:0;">
+                                    style="flex-grow:1; border-top-right-radius:0; border-bottom-right-radius:0; min-width:0; width:100%;">
                                 <button id="gps-manual-btn" class="neon-button"
                                     style="border-top-left-radius:0; border-bottom-left-radius:0;">検索</button>
                             </div>

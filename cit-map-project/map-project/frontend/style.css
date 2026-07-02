@@ -58,13 +58,17 @@ body.light-mode {
 }
 
 /* Base Styles */
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
 body {
     font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background-color: var(--bg-main);
     color: var(--text-main);
     line-height: 1.6;
     padding-bottom: 60px;
-    overflow-x: hidden;
     transition: background-color 0.4s ease, color 0.4s ease;
 }
 
@@ -179,6 +183,19 @@ p {
 }
 
 .settings-area {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    position: relative;
+}
+
+.mobile-settings-toggle {
+    display: none;
+    font-size: 1.2rem;
+    padding: 8px 12px;
+}
+
+.settings-dropdown {
     display: flex;
     gap: 15px;
     flex-wrap: wrap;
@@ -639,10 +656,12 @@ p {
     flex-direction: column;
 }
 
-.specialty-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px var(--shadow-hover);
-    border-color: var(--accent);
+@media (hover: hover) and (pointer: fine) {
+    .specialty-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px var(--shadow-hover);
+        border-color: var(--accent);
+    }
 }
 
 .specialty-card img {
@@ -652,8 +671,10 @@ p {
     transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-.specialty-card:hover img {
-    transform: scale(1.08);
+@media (hover: hover) and (pointer: fine) {
+    .specialty-card:hover img {
+        transform: scale(1.08);
+    }
 }
 
 .specialty-card h4 {
@@ -687,10 +708,12 @@ p {
     box-shadow: 0 10px 25px var(--shadow-color);
 }
 
-.event-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px var(--shadow-hover);
-    border-color: var(--accent);
+@media (hover: hover) and (pointer: fine) {
+    .event-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px var(--shadow-hover);
+        border-color: var(--accent);
+    }
 }
 
 .event-img-wrapper {
@@ -707,8 +730,10 @@ p {
     transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-.event-card:hover img {
-    transform: scale(1.08);
+@media (hover: hover) and (pointer: fine) {
+    .event-card:hover img {
+        transform: scale(1.08);
+    }
 }
 
 .event-title-overlay {
@@ -1057,6 +1082,7 @@ p {
     display: flex;
     gap: 12px;
     width: 100%;
+    flex-wrap: wrap;
 }
 
 .chat-input-field {
@@ -1204,7 +1230,7 @@ p {
 }
 
 .modal-text-content {
-    flex: 1;
+    flex: 1 1 auto;
     min-width: 250px;
     display: flex;
     flex-direction: column;
@@ -1272,11 +1298,41 @@ p {
 }
 
 /* --- Responsive Adjustments --- */
+@media (min-width: 1025px) {
+    body {
+        zoom: 0.9;
+    }
+}
+
 @media (max-width: 768px) {
     .header-inner {
-        justify-content: center;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .mobile-settings-toggle {
+        display: inline-flex;
+    }
+
+    .settings-dropdown {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        margin-top: 15px;
+        background: var(--bg-sec);
+        border: 1px solid var(--accent);
+        padding: 20px;
+        border-radius: var(--radius-md);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.5);
         flex-direction: column;
-        gap: 15px;
+        z-index: 1000;
+        min-width: 200px;
+    }
+
+    .settings-dropdown.show {
+        display: flex;
+        animation: fadeIn 0.2s ease-out;
     }
 
     .main-content-wrapper {
@@ -1301,10 +1357,12 @@ p {
         align-items: center;
         text-align: center;
         padding: 30px 20px;
+        flex-wrap: nowrap;
     }
 
     #modal-image {
         max-width: 100%;
+        max-height: 250px;
         margin-bottom: 20px;
     }
 
@@ -1331,6 +1389,24 @@ p {
     .feature-hub {
         padding: 30px 20px;
     }
+
+    .filter-container {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 15px;
+        border-radius: var(--radius-md);
+    }
+
+    .filter-group {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: left;
+    }
+
+    .neon-input, .neon-select {
+        width: 100%;
+        min-width: 0;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1348,17 +1424,6 @@ p {
 
     .swipe-card-ui img {
         height: 180px;
-    }
-
-    .filter-container {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .filter-group {
-        flex-direction: column;
-        align-items: stretch;
-        text-align: left;
     }
 }
 

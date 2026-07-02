@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced UI Tuner v2 - Real UI</title>
+    <style>
+        /* --- UI Tuner App Styles --- */
+        body, html { margin: 0; padding: 0; height: 100vh; overflow: hidden; font-family: 'Segoe UI', system-ui, sans-serif; background: #0a0a0a; color: #e5e5e5; }
+        * { box-sizing: border-box; }
+        
+        .tuner-layout { display: flex; height: 100%; }
+        
+        .tuner-sidebar {
+            width: 420px;
+            background: #171717;
+            border-right: 1px solid #262626;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            box-shadow: 5px 0 20px rgba(0,0,0,0.5);
+            z-index: 10;
+        }
+        
+        .tuner-sidebar::-webkit-scrollbar { width: 8px; }
+        .tuner-sidebar::-webkit-scrollbar-thumb { background: #404040; border-radius: 4px; }
+
+        .tuner-header {
+            padding: 24px;
+            border-bottom: 1px solid #262626;
+            background: #1f1f1f;
+            position: sticky;
+            top: 0;
+            z-index: 5;
+        }
+        .tuner-header h1 { font-size: 1.4rem; margin: 0; color: #fff; display: flex; align-items: center; gap: 8px; }
+        
+        .section { padding: 24px; border-bottom: 1px solid #262626; }
+        .section-title { font-size: 0.95rem; font-weight: 600; color: #a3a3a3; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; }
+        
+        .control-group { margin-bottom: 16px; }
+        .control-group:last-child { margin-bottom: 0; }
+        .control-label { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 8px; color: #d4d4d4; }
+        .val-display { font-family: monospace; color: #60a5fa; }
+        
+        /* Form Inputs */
+        input[type="range"] {
+            width: 100%;
+            accent-color: #3b82f6;
+            cursor: pointer;
+        }
+        
+        .color-row { display: flex; align-items: center; gap: 12px; }
+        input[type="color"] {
+            -webkit-appearance: none;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            cursor: pointer;
+            padding: 0;
+            background: transparent;
+        }
+        input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
+        input[type="color"]::-webkit-color-swatch { border: 1px solid #404040; border-radius: 8px; }
+        
+        .btn-group { display: flex; gap: 8px; flex-wrap: wrap; }
+        .btn {
+            flex: 1;
+            background: #262626;
+            color: #d4d4d4;
+            border: 1px solid #404040;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: 0.2s;
+            text-align: center;
+        }
+        .btn:hover { background: #333; }
+        .btn.active { background: #3b82f6; color: #fff; border-color: #3b82f6; font-weight: 600; box-shadow: 0 0 10px rgba(59,130,246,0.3); }
+        .btn-action { background: #059669; border-color: #047857; color: white; padding: 12px; font-weight: bold; width: 100%; margin-bottom: 10px; }
+        .btn-action:hover { background: #047857; }
+        .btn-secondary { background: #3f3f46; border-color: #27272a; color: white; padding: 10px; width: 100%; margin-bottom: 10px;}
+        .btn-secondary:hover { background: #27272a; }
+
+        /* Contrast Badge */
+        .contrast-badge {
+            font-size: 0.8rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+            margin-left: auto;
+        }
+        .contrast-pass { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid #059669; }
+        .contrast-fail { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid #dc2626; }
+
+        /* Preview Area */
+        .tuner-preview-area {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000;
+            padding: 30px;
+            background-image: radial-gradient(#262626 1px, transparent 1px);
+            background-size: 20px 20px;
+            overflow: auto;
+        }
+
+        /* Iframe Device Frame */
+        #device-frame {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255,255,255,0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1), height 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            position: relative;
+        }
+        
+        #device-frame iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: transparent;
+        }
+        
+        #device-frame.pc { width: 100%; height: 100%; }
+        #device-frame.ipad { width: 768px; height: 1024px; max-height: 100%; }
+        #device-frame.mobile { width: 375px; height: 812px; max-height: 100%; }
+
+        /* Modals */
+        .modal-overlay {
+            position: fixed; top:0; left:0; width:100%; height:100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(4px);
+            display: none; justify-content: center; align-items: center; z-index: 1000;
+        }
+        .modal-box {
+            background: #171717; width: 600px; max-width: 90%; padding: 30px;
+            border-radius: 12px; border: 1px solid #333;
+        }
+        .modal-box textarea {
+            width: 100%; height: 250px; background: #0a0a0a; color: #a3a3a3;
+            border: 1px solid #333; padding: 15px; font-family: monospace;
+            border-radius: 6px; margin: 15px 0; outline: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="tuner-layout">
+    <aside class="tuner-sidebar">
+        <div class="tuner-header">
+            <h1>🎨 UI Tuner v2 (Real App)</h1>
+            <span style="font-size: 0.8rem; color: #a3a3a3;">Advanced Theming & Layout</span>
+        </div>
+
+        <!-- 1. Presets & Device -->
+        <div class="section">
+            <div class="section-title">Device & Preset</div>
+            <div class="control-group">
+                <div class="btn-group" id="device-group">
+                    <button class="btn active" onclick="setDevice('pc')">💻 PC</button>
+                    <button class="btn" onclick="setDevice('ipad')">📱 iPad</button>
+                    <button class="btn" onclick="setDevice('mobile')">📱 スマホ</button>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="control-label">テーマプリセット</div>
+                <div class="btn-group" id="preset-group">
+                    <button class="btn active" onclick="setPreset('default')">Modern</button>
+                    <button class="btn" onclick="setPreset('dark')">Dark</button>
+                    <button class="btn" onclick="setPreset('vintage')">Vintage</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Colors & Contrast -->
+        <div class="section">
+            <div class="section-title">Color Theme & Accessibility</div>
+            <div class="control-group">
+                <div class="control-label">
+                    <span>アクセントカラー (--accent)</span>
+                    <span class="val-display" id="val-accent">#f43f5e</span>
+                </div>
+                <div class="color-row">
+                    <input type="color" id="ctrl-accent" value="#f43f5e">
+                    <div id="contrast-badge" class="contrast-badge contrast-pass">AA (4.5+)</div>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="control-label">
+                    <span>メイン背景色 (--bg-main)</span>
+                    <span class="val-display" id="val-bg-main">#0f172a</span>
+                </div>
+                <input type="color" id="ctrl-bg-main" value="#0f172a">
+            </div>
+            <div class="control-group">
+                <div class="control-label">
+                    <span>サブ背景色 (--bg-sec)</span>
+                    <span class="val-display" id="val-bg-sec">#1e293b</span>
+                </div>
+                <input type="color" id="ctrl-bg-sec" value="#1e293b">
+            </div>
+            <div class="control-group">
+                <div class="control-label">
+                    <span>テキスト色 (--text-main)</span>
+                    <span class="val-display" id="val-text">#f8fafc</span>
+                </div>
+                <input type="color" id="ctrl-text" value="#f8fafc">
+            </div>
+        </div>
+
+        <!-- 3. Scale -->
+        <div class="section">
+            <div class="section-title">Scale & Typography</div>
+            <div class="control-group">
+                <div class="control-label">
+                    <span>PCズーム率 (--scale-pc)</span>
+                    <span class="val-display" id="val-scale">0.9</span>
+                </div>
+                <input type="range" id="ctrl-scale" min="50" max="150" value="90">
+            </div>
+            <div class="control-group">
+                <div class="control-label">
+                    <span>ベースフォント (--font-base)</span>
+                    <span class="val-display" id="val-font">16px</span>
+                </div>
+                <input type="range" id="ctrl-font" min="12" max="24" value="16">
+            </div>
+        </div>
+
+        <!-- 4. Layout & Spacing -->
+        <div class="section">
+            <div class="section-title">Layout & Spacing (Flexbox)</div>
+            
+            <div class="control-group">
+                <div class="control-label">フィルター部の並び方向 <small style="color:#f59e0b">※スマホはColumn固定</small></div>
+                <div class="btn-group" id="dir-group">
+                    <button class="btn active" onclick="setDir('row')">Row (横)</button>
+                    <button class="btn" onclick="setDir('column')">Column (縦)</button>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="control-label">フィルター部の配置 (Justify)</div>
+                <div class="btn-group" id="justify-group">
+                    <button class="btn" onclick="setJustify('flex-start')">Start</button>
+                    <button class="btn active" onclick="setJustify('center')">Center</button>
+                    <button class="btn" onclick="setJustify('space-between')">Space-Btw</button>
+                </div>
+            </div>
+
+            <div class="control-group" style="margin-top: 20px;">
+                <div class="control-label">
+                    <span>要素間の余白 (--spacing-gap)</span>
+                    <span class="val-display" id="val-gap">20px</span>
+                </div>
+                <input type="range" id="ctrl-gap" min="4" max="48" value="20" step="4">
+            </div>
+            <div class="control-group">
+                <div class="control-label">
+                    <span>コンテナ内余白 (--spacing-padding)</span>
+                    <span class="val-display" id="val-padding">30px</span>
+                </div>
+                <input type="range" id="ctrl-padding" min="8" max="64" value="30" step="2">
+            </div>
+            <div class="control-group">
+                <div class="control-label">
+                    <span>角丸 (--radius-lg)</span>
+                    <span class="val-display" id="val-radius">24px</span>
+                </div>
+                <input type="range" id="ctrl-radius" min="0" max="48" value="24" step="4">
+            </div>
+        </div>
+
+        <!-- 5. Export / Import -->
+        <div class="section" style="border-bottom: none;">
+            <button class="btn-action" onclick="exportCSS()">📄 CSSを出力する</button>
+            <button class="btn-secondary" onclick="exportJSON()">📦 JSONをコピー (状態保存)</button>
+            <button class="btn-secondary" onclick="document.getElementById('import-modal').style.display='flex'">📥 JSONから復元</button>
+        </div>
+    </aside>
+
+    <!-- Preview Iframe Area -->
+    <main class="tuner-preview-area">
+        <div id="device-frame" class="pc">
+            <iframe id="preview-iframe" src="index.html"></iframe>
+        </div>
+    </main>
+</div>
+
+<!-- Modals -->
+<div class="modal-overlay" id="export-modal">
+    <div class="modal-box">
+        <h2 style="margin-top:0; color:#fff;">📄 CSS Output</h2>
+        <p style="color:#a3a3a3; font-size:0.9rem;">以下のコードを <code>style.css</code> の末尾に貼り付けて上書きしてください。</p>
+        <textarea id="css-textarea" readonly></textarea>
+        <div style="text-align: right;">
+            <button class="btn" style="padding: 10px 20px; background:#3b82f6; color:#fff;" onclick="document.getElementById('export-modal').style.display='none'">閉じる</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal-overlay" id="import-modal">
+    <div class="modal-box">
+        <h2 style="margin-top:0; color:#fff;">📥 Import JSON</h2>
+        <p style="color:#a3a3a3; font-size:0.9rem;">以前コピーしたJSONデータを貼り付けてください。</p>
+        <textarea id="json-textarea" placeholder='{"--accent":"#ff0000", ...}'></textarea>
+        <div style="display:flex; justify-content:flex-end; gap:10px;">
+            <button class="btn" onclick="document.getElementById('import-modal').style.display='none'">キャンセル</button>
+            <button class="btn" style="background:#059669; color:#fff;" onclick="importJSON()">復元する</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // State
+    const state = {
+        device: 'pc',
+        preset: 'default',
+        dir: 'row', // App filter-container direction
+        justify: 'center'
+    };
+
+    // DOM Elements
+    const deviceFrame = document.getElementById('device-frame');
+    const iframe = document.getElementById('preview-iframe');
+
+    const inputs = {
+        '--accent': document.getElementById('ctrl-accent'),
+        '--bg-main': document.getElementById('ctrl-bg-main'),
+        '--bg-sec': document.getElementById('ctrl-bg-sec'),
+        '--text-main': document.getElementById('ctrl-text'),
+        'scale-pc': document.getElementById('ctrl-scale'), 
+        'font-base': document.getElementById('ctrl-font'), 
+        '--spacing-gap': document.getElementById('ctrl-gap'),
+        '--spacing-padding': document.getElementById('ctrl-padding'),
+        '--radius-lg': document.getElementById('ctrl-radius')
+    };
+
+    const displays = {
+        '--accent': document.getElementById('val-accent'),
+        '--bg-main': document.getElementById('val-bg-main'),
+        '--bg-sec': document.getElementById('val-bg-sec'),
+        '--text-main': document.getElementById('val-text'),
+        'scale-pc': document.getElementById('val-scale'),
+        'font-base': document.getElementById('val-font'),
+        '--spacing-gap': document.getElementById('val-gap'),
+        '--spacing-padding': document.getElementById('val-padding'),
+        '--radius-lg': document.getElementById('val-radius')
+    };
+
+    // Initialize Event Listeners
+    Object.keys(inputs).forEach(key => {
+        inputs[key].addEventListener('input', () => {
+            updateCSSVar(key, inputs[key].value);
+            notifyIframe();
+        });
+    });
+
+    // Theme Presets Data
+    const presets = {
+        default: { '--accent':'#f43f5e', '--bg-main':'#0f172a', '--bg-sec':'#1e293b', '--text-main':'#f8fafc', 'scale-pc':'90', 'font-base':'16', '--spacing-gap':'20', '--spacing-padding':'30', '--radius-lg':'24', dir:'row', justify:'center' },
+        dark: { '--accent':'#3b82f6', '--bg-main':'#000000', '--bg-sec':'#111111', '--text-main':'#e5e5e5', 'scale-pc':'100', 'font-base':'15', '--spacing-gap':'16', '--spacing-padding':'24', '--radius-lg':'12', dir:'row', justify:'center' },
+        vintage: { '--accent':'#d97706', '--bg-main':'#fef3c7', '--bg-sec':'#fffbeb', '--text-main':'#451a03', 'scale-pc':'95', 'font-base':'17', '--spacing-gap':'24', '--spacing-padding':'32', '--radius-lg':'32', dir:'row', justify:'center' }
+    };
+
+    function updateCSSVar(key, val) {
+        let finalVal = val;
+        
+        // Formatting
+        if (key === 'scale-pc') {
+            finalVal = val / 100;
+        } else if (['font-base', '--spacing-gap', '--spacing-padding', '--radius-lg'].includes(key)) {
+            finalVal = val + 'px';
+        }
+        
+        // Update Display Text
+        displays[key].textContent = finalVal;
+
+        // Contrast Check Trigger
+        if (key === '--accent' || key === '--bg-main') {
+            checkContrast();
+        }
+    }
+
+    function notifyIframe() {
+        if (!iframe.contentWindow) return;
+
+        const payload = {
+            type: 'UPDATE_UI_V2',
+            data: {
+                zoom: state.device === 'pc' ? (inputs['scale-pc'].value / 100) : 1,
+                fontSize: inputs['font-base'].value + 'px',
+                '--accent': inputs['--accent'].value,
+                '--bg-main': inputs['--bg-main'].value,
+                '--bg-sec': inputs['--bg-sec'].value,
+                '--text-main': inputs['--text-main'].value,
+                '--radius-lg': inputs['--radius-lg'].value + 'px',
+                '--radius-md': (inputs['--radius-lg'].value * 0.7) + 'px',
+                '--spacing-gap': inputs['--spacing-gap'].value + 'px',
+                '--spacing-padding': inputs['--spacing-padding'].value + 'px',
+                layoutDir: state.dir,
+                layoutJustify: state.justify,
+                device: state.device
+            }
+        };
+        iframe.contentWindow.postMessage(payload, '*');
+    }
+
+    // --- Contrast Calculation (WCAG 2.0) ---
+    function getLuminance(hex) {
+        hex = hex.replace('#', '');
+        if(hex.length === 3) hex = hex.split('').map(c => c+c).join('');
+        let rgb = hex.match(/.{2}/g).map(x => parseInt(x, 16) / 255);
+        rgb = rgb.map(c => c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4));
+        return 0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2];
+    }
+
+    function checkContrast() {
+        const bg = inputs['--bg-main'].value;
+        const fg = inputs['--accent'].value;
+        const l1 = getLuminance(fg);
+        const l2 = getLuminance(bg);
+        const ratio = (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
+        
+        const badge = document.getElementById('contrast-badge');
+        if (ratio >= 4.5) {
+            badge.textContent = `AA (${ratio.toFixed(1)})`;
+            badge.className = 'contrast-badge contrast-pass';
+        } else {
+            badge.textContent = `Fail (${ratio.toFixed(1)})`;
+            badge.className = 'contrast-badge contrast-fail';
+        }
+    }
+
+    // --- UI Controls (Buttons) ---
+    function setDevice(device) {
+        state.device = device;
+        updateActiveBtn('device-group', 'setDevice', device);
+        deviceFrame.className = device;
+        notifyIframe(); // Re-trigger layout limits
+    }
+
+    function setPreset(presetName) {
+        state.preset = presetName;
+        updateActiveBtn('preset-group', 'setPreset', presetName);
+        
+        const p = presets[presetName];
+        Object.keys(inputs).forEach(key => {
+            inputs[key].value = p[key];
+            updateCSSVar(key, p[key]);
+        });
+        setDir(p.dir, false);
+        setJustify(p.justify, false);
+        notifyIframe();
+    }
+
+    function setDir(dir, notify=true) {
+        state.dir = dir;
+        updateActiveBtn('dir-group', 'setDir', dir);
+        if(notify) notifyIframe();
+    }
+
+    function setJustify(justify, notify=true) {
+        state.justify = justify;
+        updateActiveBtn('justify-group', 'setJustify', justify);
+        if(notify) notifyIframe();
+    }
+
+    function updateActiveBtn(groupId, fnName, val) {
+        const group = document.getElementById(groupId);
+        group.querySelectorAll('.btn').forEach(b => {
+            if(b.getAttribute('onclick').includes(`'${val}'`)) b.classList.add('active');
+            else b.classList.remove('active');
+        });
+    }
+
+    // --- Export / Import ---
+    function exportCSS() {
+        const css = `/* --- UI Tuner V2 Overrides --- */
+:root {
+    --bg-main: ${inputs['--bg-main'].value};
+    --bg-sec: ${inputs['--bg-sec'].value};
+    --text-main: ${inputs['--text-main'].value};
+    --accent: ${inputs['--accent'].value};
+    --radius-lg: ${inputs['--radius-lg'].value}px;
+    --radius-md: ${inputs['--radius-lg'].value * 0.7}px;
+}
+
+body {
+    font-size: ${inputs['font-base'].value}px;
+}
+
+.filter-container {
+    flex-direction: ${state.dir};
+    justify-content: ${state.justify};
+    gap: ${inputs['--spacing-gap'].value}px;
+}
+
+.main-feature-section, .feature-hub {
+    padding: ${inputs['--spacing-padding'].value}px;
+}
+
+@media (min-width: 1025px) {
+    body {
+        zoom: ${inputs['scale-pc'].value / 100};
+    }
+}
+@media (max-width: 768px) {
+    .filter-container {
+        flex-direction: column !important; /* 強制縦並び */
+    }
+}`;
+        document.getElementById('css-textarea').value = css;
+        document.getElementById('export-modal').style.display = 'flex';
+    }
+
+    function exportJSON() {
+        const data = {
+            device: state.device,
+            dir: state.dir,
+            justify: state.justify
+        };
+        Object.keys(inputs).forEach(k => data[k] = inputs[k].value);
+        
+        navigator.clipboard.writeText(JSON.stringify(data, null, 2))
+            .then(() => alert("JSONをクリップボードにコピーしました！"))
+            .catch(err => alert("コピーに失敗しました"));
+    }
+
+    function importJSON() {
+        try {
+            const jsonText = document.getElementById('json-textarea').value;
+            const data = JSON.parse(jsonText);
+            
+            if(data.device) setDevice(data.device);
+            if(data.dir) setDir(data.dir, false);
+            if(data.justify) setJustify(data.justify, false);
+            
+            Object.keys(inputs).forEach(k => {
+                if(data[k] !== undefined) {
+                    inputs[k].value = data[k];
+                    updateCSSVar(k, data[k]);
+                }
+            });
+            notifyIframe();
+            document.getElementById('import-modal').style.display = 'none';
+        } catch(e) {
+            alert("無効なJSONデータです。");
+        }
+    }
+
+    // Init
+    iframe.onload = () => {
+        checkContrast();
+        notifyIframe();
+    };
+
+</script>
+
+</body>
+</html>

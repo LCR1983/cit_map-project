@@ -123,7 +123,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Header Settings (Lang, Font, Color) ---
+    // --- Header Settings (Lang, Font, Color) & Mobile Toggle ---
+    const settingsToggleBtn = document.getElementById('mobile-settings-toggle');
+    const settingsDropdown = document.getElementById('settings-dropdown');
+    if (settingsToggleBtn && settingsDropdown) {
+        settingsToggleBtn.addEventListener('click', () => {
+            const isExpanded = settingsToggleBtn.getAttribute('aria-expanded') === 'true';
+            settingsToggleBtn.setAttribute('aria-expanded', !isExpanded);
+            settingsDropdown.classList.toggle('show');
+        });
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!settingsToggleBtn.contains(e.target) && !settingsDropdown.contains(e.target)) {
+                settingsToggleBtn.setAttribute('aria-expanded', 'false');
+                settingsDropdown.classList.remove('show');
+            }
+        });
+    }
+
     const translations = {
         "title": "Kanto Local Food Map", "subtitle": "Find seasonal local specialties!", "gpsTitle": "Find specialties near you", "gpsBtn": "Get Location", "event": "📅 Events", "weatherTitle": "Weather Recommend", "weatherGet": "Get Weather", "quizTitle": "Local Food Quiz", "swipeTitle": "Intuitive Matching", "swipeDesc": "Drag cards or use buttons!", "swipeMatched": "Matched Foods", "aiTitle": "AI Sommelier", "aiGreeting": "Do you have any plans? (e.g., Seafood with partner)", "chatSend": "Send", "routeTitle": "Tour Planner", "routeCreate": "Generate Plan", "officialX": "Official X", "officialHP": "University HP",
         "lang": "Language", "fontSize": "Font Size", "std": "Standard", "large": "Large", "bgColor": "Background", "black": "Dark", "white": "Light",
@@ -1325,5 +1343,44 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // --- UI Tuner V2 Integration ---
+    window.addEventListener('message', (event) => {
+        if (event.data && event.data.type === 'UPDATE_UI_V2') {
+            const data = event.data.data;
+            
+            // 1. Basic properties
+            if (data.zoom) document.body.style.zoom = data.zoom;
+            if (data.fontSize) document.documentElement.style.fontSize = data.fontSize;
+            
+            // 2. CSS Variables
+            for (const key in data) {
+                if (key.startsWith('--')) {
+                    document.documentElement.style.setProperty(key, data[key]);
+                }
+            }
+
+            // 3. Dynamic Layout Overrides (inject <style> tag)
+            let styleTag = document.getElementById('tuner-overrides');
+            if (!styleTag) {
+                styleTag = document.createElement('style');
+                styleTag.id = 'tuner-overrides';
+                document.head.appendChild(styleTag);
+            }
+            
+            // Generate CSS Rules
+            let layoutCSS = `
+                .filter-container {
+                    flex-direction: ${data.device === 'mobile' ? 'column' : data.layoutDir} !important;
+                    justify-content: ${data.layoutJustify} !important;
+                    gap: ${data['--spacing-gap']} !important;
+                }
+                .main-feature-section, .feature-hub {
+                    padding: ${data['--spacing-padding']} !important;
+                }
+            `;
+            styleTag.innerHTML = layoutCSS;
+        }
+    });
 
 });
