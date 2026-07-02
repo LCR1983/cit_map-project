@@ -1179,17 +1179,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Event Tab ---
     const eventData = [
-        { name: '水戸梅まつり', prefecture: 'ibaraki', month: '2〜3月', description: '日本三名園・偕楽園で約3,000本の梅が開花。売店では梅干し・梅酒の販売も', emoji: '🌸', season: 'spring' },
-        { name: 'いちご狩りシーズン', prefecture: 'tochigi', month: '1〜5月', description: '栃木県内のいちご農園で「とちおとめ」「スカイベリー」の摘み取り体験', emoji: '🍓', season: 'spring' },
-        { name: '嬬恋高原レタス収穫', prefecture: 'gunma', month: '7〜9月', description: '嬬恋村の高原で涼しい夏に育ったレタスの収穫体験。農家直売も実施', emoji: '🥬', season: 'summer' },
-        { name: 'こんにゃく祭', prefecture: 'gunma', month: '10月', description: '下仁田町でこんにゃく製品が大集合。試食・販売・こんにゃく料理体験', emoji: '🌿', season: 'autumn' },
-        { name: '狭山茶新茶まつり', prefecture: 'saitama', month: '5月', description: '狭山市で新茶の初摘み体験や茶農家との交流イベントが開催', emoji: '🍵', season: 'spring' },
-        { name: '川越芋フェスタ', prefecture: 'saitama', month: '10〜11月', description: '川越市でさつまいも料理・スイーツ・焼き芋の大試食会', emoji: '🍠', season: 'autumn' },
-        { name: '千葉落花生収穫祭', prefecture: 'chiba', month: '9月', description: '八街市で落花生の収穫体験・農家直売・茹で落花生の試食', emoji: '🥜', season: 'autumn' },
-        { name: '九十九里しらす祭り', prefecture: 'chiba', month: '5月', description: '九十九里浜の浜焼きフェスで取れたて生しらすの試食・販売会', emoji: '🐟', season: 'spring' },
-        { name: '深川江戸まつり', prefecture: 'tokyo', month: '8月', description: '深川地区で江戸前グルメ（あさり・深川めし）を楽しめる夏の伝統祭り', emoji: '🏺', season: 'summer' },
-        { name: '三崎まぐろ祭り', prefecture: 'kanagawa', month: '2月', description: '三崎港でとれたての本マグロを堪能。解体ショーや即売会も', emoji: '🐟', season: 'winter' },
-        { name: '湘南しらす解禁', prefecture: 'kanagawa', month: '3月', description: '禁漁期明け・春の生しらす解禁。江の島や茅ヶ崎の飲食店で新鮮しらす丼が登場', emoji: '🌊', season: 'spring' },
+        { name: '待乳山聖天大根まつり', prefecture: 'tokyo', month: '1月', description: '浅草・待乳山聖天で毎年1月7日に開催。参拝者に大根が振る舞われる新春の風物詩です。', emoji: '🥕', season: 'winter', url: 'http://www.matsuchiyama.jp/daikon.html' },
+        { name: '栃木いちご狩り', prefecture: 'tochigi', month: '1〜5月', description: '栃木県内のいちご農園で「とちおとめ」「スカイベリー」の摘み取り体験が楽しめます。', emoji: '🍓', season: 'spring', url: 'https://www.tochigiji.or.jp/features/strawberry-picking' },
+        { name: '三崎まぐろ祭り', prefecture: 'kanagawa', month: '2月', description: '三崎港でとれたての本マグロを堪能。解体ショーや即売会も開催される冬の一大イベント。', emoji: '🐟', season: 'winter', url: 'https://www.city.miura.kanagawa.jp/soshiki/kankoshokoka/kankoshokoka_kanko/chiikikankougyouji/10333.html' },
+        { name: '水戸梅祭り', prefecture: 'ibaraki', month: '2〜3月', description: '日本三名園・偕楽園で約3,000本の梅が開花。売店では梅干し・梅酒の販売も楽しめます。', emoji: '🌸', season: 'spring', url: 'https://mitokoumon.com/ume/' },
+        { name: '狭山新茶祭り', prefecture: 'saitama', month: '5月', description: '狭山市で新茶の初摘み体験や茶農家との交流イベントが開催。香り豊かな狭山茶を味わえます。', emoji: '🍵', season: 'spring', url: 'https://www.sayama-kanko.jp/april-event/sayama-new-tea/' },
+        { name: '笠間栗祭り', prefecture: 'ibaraki', month: '9〜10月', description: '栗の産地・笠間市で開催。栗ご飯や栗スイーツ、農家による直売会など秋の味覚が勢揃い。', emoji: '🌰', season: 'autumn', url: 'https://www.city.kasama.lg.jp/page/page002902.html' },
+        { name: 'こんにゃく祭り', prefecture: 'gunma', month: '10月', description: '下仁田町でこんにゃく製品が大集合。試食・販売・こんにゃく料理体験など盛りだくさんです。', emoji: '🌿', season: 'autumn', url: 'https://www.shimonita.jp/info/2698/' },
+        { name: '川越芋フェスタ', prefecture: 'saitama', month: '10〜11月', description: '川越市でさつまいも料理・スイーツ・焼き芋の大試食会。小江戸の雰囲気の中で秋を満喫！', emoji: '🍠', season: 'autumn', url: 'https://coedo-imopark.com/' },
+        { name: '大洗あんこう祭り', prefecture: 'ibaraki', month: '11月', description: '茨城県大洗町で冬の味覚・あんこうをメインに据えた人気の祭り。吊るし切りの実演も必見！', emoji: '🐟', season: 'winter', url: 'https://www.oarai-camp.jp/page/page000352.html' },
+        { name: '下仁田ネギ祭り', prefecture: 'gunma', month: '11〜12月', description: '下仁田町で特産のブランドネギ「下仁田ネギ」を使った料理や販売が楽しめる祭りです。', emoji: '🧅', season: 'winter', url: 'https://www.shimonita.jp/info/2150/' },
     ];
     const seasonColorMap = { spring: '#fb923c', summer: '#22d3ee', autumn: '#f87171', winter: '#818cf8' };
     window.initEventTab = function () {
@@ -1213,8 +1212,19 @@ document.addEventListener('DOMContentLoaded', () => {
             monthTag.textContent = event.month;
             tagRow.appendChild(prefTag); tagRow.appendChild(monthTag);
             const title = document.createElement('h4'); title.textContent = event.name; title.style.marginBottom = '6px';
-            const desc = document.createElement('p'); desc.style.cssText = 'font-size:0.9rem;color:var(--text-sec);line-height:1.5;'; desc.textContent = event.description;
+            const desc = document.createElement('p'); desc.style.cssText = 'font-size:0.9rem;color:var(--text-sec);line-height:1.5;margin-bottom:10px;'; desc.textContent = event.description;
             bodyDiv.appendChild(tagRow); bodyDiv.appendChild(title); bodyDiv.appendChild(desc);
+            if (event.url) {
+                const link = document.createElement('a');
+                link.href = event.url;
+                link.target = '_blank';
+                link.rel = 'noopener noreferrer';
+                link.textContent = '🔗 詳細ページを見る';
+                link.style.cssText = 'font-size:0.8rem;color:var(--accent);text-decoration:none;border:1px solid var(--accent);padding:3px 10px;border-radius:20px;display:inline-block;transition:background 0.2s;';
+                link.addEventListener('mouseover', () => { link.style.background = 'rgba(244,63,94,0.15)'; });
+                link.addEventListener('mouseout', () => { link.style.background = 'transparent'; });
+                bodyDiv.appendChild(link);
+            }
             card.appendChild(emojiEl); card.appendChild(bodyDiv);
             container.appendChild(card);
         });
