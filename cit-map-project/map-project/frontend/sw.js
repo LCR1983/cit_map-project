@@ -1,6 +1,6 @@
 // バージョンを更新 → 古いキャッシュを自動破棄、prefecture.htmlを含む全HTMLを刷新
-const CACHE = 'kanto-gourmet-v13';
-const STATIC = ['./', './index.html', './style.css', './script.js', './data.js', './prefecture.html'];
+const CACHE = 'kanto-gourmet-v14';
+const STATIC = ['./', './index.html', './style.css', './script.js', './data.js', './food_translations.js', './prefecture.html'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(STATIC).catch(() => { })));

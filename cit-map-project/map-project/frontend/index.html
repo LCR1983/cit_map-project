@@ -9,7 +9,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self' https://unpkg.com https://cdn.jsdelivr.net 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com https://unpkg.com 'unsafe-inline'; font-src https://fonts.gstatic.com data: https://unpkg.com; img-src https: http: data: blob: 'self'; connect-src 'self' https://nominatim.openstreetmap.org https://api.open-meteo.com https://generativelanguage.googleapis.com https://unpkg.com;">
+        content="default-src 'self'; script-src 'self' https://unpkg.com https://cdn.jsdelivr.net 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com https://unpkg.com 'unsafe-inline'; font-src https://fonts.gstatic.com data: https://unpkg.com; img-src https: http: data: blob: 'self'; connect-src 'self' https://nominatim.openstreetmap.org https://api.open-meteo.com https://generativelanguage.googleapis.com https://unpkg.com https://placehold.co;">
 
     <title>関東ローカルグルメ＆観光マップ</title>
     <link rel="manifest" href="manifest.json">
@@ -46,23 +46,23 @@
         <div class="onboarding-card">
             <div class="onboarding-step active" data-step="0">
                 <div class="ob-icon">🗾</div>
-                <h3>ようこそ！</h3>
-                <p>関東7都県の旬グルメ・観光スポットを体験できるマップです。</p>
+                <h3 data-i18n="obWelcomeTitle">ようこそ！</h3>
+                <p data-i18n="obWelcomeDesc">関東7都県の旬グルメ・観光スポットを体験できるマップです。</p>
             </div>
             <div class="onboarding-step" data-step="1">
                 <div class="ob-icon">🗺️</div>
-                <h3>マップで探す</h3>
-                <p>各県のアイコンにカーソルを合わせると特産品が表示。クリックで公式サイトへ！</p>
+                <h3 data-i18n="obMapTitle">マップで探す</h3>
+                <p data-i18n="obMapDesc">各県のアイコンにカーソルを合わせると特産品が表示。クリックすると検索結果が自動で絞り込まれます！</p>
             </div>
             <div class="onboarding-step" data-step="2">
                 <div class="ob-icon">🤖</div>
-                <h3>AIソムリエ</h3>
-                <p>「恋人と海鮮デート」など自然な言葉で旅行相談ができます。</p>
+                <h3 data-i18n="obAiTitle">AIソムリエ＆多言語対応</h3>
+                <p data-i18n="obAiDesc">自然な言葉で旅行相談ができるほか、右上のボタンで英語（English）にも切り替えられます。</p>
             </div>
             <div class="onboarding-step" data-step="3">
                 <div class="ob-icon">❤️</div>
-                <h3>お気に入り保存</h3>
-                <p>気になった食材をブックマーク。ヘッダーの ❤️ ボタンから確認できます。</p>
+                <h3 data-i18n="obFavTitle">お気に入り保存</h3>
+                <p data-i18n="obFavDesc">気になった食材をブックマーク。郷土料理の情報もチェックしましょう！</p>
             </div>
             <div class="ob-nav">
                 <div class="ob-dots">
@@ -72,8 +72,8 @@
                     <button class="ob-dot" data-dot="3" aria-label="4/4"></button>
                 </div>
                 <div style="display:flex;gap:10px;">
-                    <button id="ob-skip" class="btn-ghost">スキップ</button>
-                    <button id="ob-next" class="neon-button">次へ →</button>
+                    <button id="ob-skip" class="btn-ghost" data-i18n="obSkip">スキップ</button>
+                    <button id="ob-next" class="neon-button" data-i18n="obNext">次へ →</button>
                 </div>
             </div>
         </div>
@@ -305,8 +305,6 @@
                 <ul class="tab-menu" role="tablist">
                     <li class="tab-item active" role="tab" aria-selected="true" tabindex="0" data-tab="tab-gps"
                         data-i18n="gps">🗺️ 現在地</li>
-                    <li class="tab-item" role="tab" aria-selected="false" tabindex="-1" data-tab="tab-gantt"
-                        data-i18n="chart">📊 旬チャート</li>
                     <li class="tab-item" role="tab" aria-selected="false" tabindex="-1" data-tab="tab-weather"
                         data-i18n="weather">⛅ お天気</li>
                     <li class="tab-item" role="tab" aria-selected="false" tabindex="-1" data-tab="tab-quiz"
@@ -317,8 +315,6 @@
                         data-i18n="ai">🤖 AIソムリエ</li>
                     <li class="tab-item" role="tab" aria-selected="false" tabindex="-1" data-tab="tab-recipe"
                         data-i18n="recipeTab">🍳 レシピ連携</li>
-                    <li class="tab-item" role="tab" aria-selected="false" tabindex="-1" data-tab="tab-route"
-                        data-i18n="route">🚃 ルート作成</li>
                 </ul>
             </div>
 
@@ -342,20 +338,7 @@
                     </div>
                 </div>
 
-                <div id="tab-gantt" class="tab-pane" role="tabpanel" hidden>
-                    <div class="feature-inner">
-                        <h3 data-i18n="chartTitle">旬のガントチャート</h3>
-                        <div class="gantt-wrapper">
-                            <div id="gantt-chart-area" class="gantt-area"></div>
-                            <div class="gantt-axis">
-                                <span style="color:#fb923c">🟠 春</span>
-                                <span style="color:#22d3ee">🔵 夏</span>
-                                <span style="color:#f87171">🔴 秋</span>
-                                <span style="color:#818cf8">🟣 冬</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
                 <div id="tab-weather" class="tab-pane" role="tabpanel" hidden>
                     <div class="feature-inner">
                         <h3 data-i18n="weatherTitle">お天気連動レコメンド</h3>
@@ -466,25 +449,6 @@
                     </div>
                 </div>
 
-                <div id="tab-route" class="tab-pane" role="tabpanel" hidden>
-                    <div class="feature-inner">
-                        <h3 data-i18n="routeTitle">食と観光のツアープランナー</h3>
-                        <form onsubmit="return false;" style="display:flex;flex-direction:column;gap:10px;">
-                            <input type="text" id="route-start" class="neon-input" placeholder="出発地 (例: 東京駅)">
-                            <select id="route-style" class="neon-select">
-                                <option value="solo">一人旅・お一人様グルメ</option>
-                                <option value="couple">恋人・夫婦でゆっくり</option>
-                                <option value="friends">友人とワイワイ・カフェ巡り</option>
-                                <option value="family">家族で収穫体験・ドライブ</option>
-                                <option value="business">出張ついでにサクッとご当地</option>
-                                <option value="tourist">外国人旅行者向け・王道名所</option>
-                            </select>
-                            <button id="route-btn" class="neon-button" data-i18n="routeCreate">ツアープランを生成</button>
-                        </form>
-                        <div id="route-result" class="feature-result-box" aria-live="polite" style="margin-top:15px;">
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <!-- 独立したイベントセクション -->
@@ -509,9 +473,12 @@
             <button id="reset-app-btn" class="btn-ghost"
                 style="font-size:0.8rem;border-color:var(--danger);color:var(--danger);">⚠️ アプリデータを初期化</button>
         </div>
-        <p style="font-size:0.8rem;color:var(--text-sec);margin-top:10px;"><span data-i18n="privacyNotice">※ 本サービスで使用する位置情報は第三者への提供を行いません。</span><a href="#"
-                onclick="document.getElementById('privacy-consent').hidden=false;return false;"
-                style="color:var(--accent);" data-i18n="privacyLink">プライバシーについて</a></p>
+        <p style="font-size:0.8rem;color:var(--text-sec);margin-top:10px;">
+            <span data-i18n="aiImageNotice">※ 本サイトに掲載されている画像はすべて生成AIによって作成されたイメージです。</span><br>
+            <span data-i18n="privacyNotice">※ 本サービスで使用する位置情報は第三者への提供を行いません。</span>
+            <a href="#" onclick="document.getElementById('privacy-consent').hidden=false;return false;"
+                style="color:var(--accent);" data-i18n="privacyLink">プライバシーについて</a>
+        </p>
         <p class="copyright">© 2026 DS Course Project - Chiba Institute of Technology</p>
     </footer>
 
@@ -572,8 +539,9 @@
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-    <script src="data.js?v=5"></script>
-    <script src="script.js?v=5"></script>
+    <script src="data.js?v=7"></script>
+    <script src="food_translations.js?v=2"></script>
+    <script src="script.js?v=7"></script>
 </body>
 
 </html>

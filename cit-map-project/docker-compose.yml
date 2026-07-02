@@ -47,6 +47,8 @@ services:
       - "8082:80"
     depends_on:
       - backend
+    volumes:
+      - ./map-project/frontend:/usr/share/nginx/html
 
 volumes:
   mysql_data:
