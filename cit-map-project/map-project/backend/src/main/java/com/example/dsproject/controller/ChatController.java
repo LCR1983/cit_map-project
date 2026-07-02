@@ -77,8 +77,10 @@ public class ChatController {
                 dbResults = specialtyRepository.findBySeason(targetSeason);
             }
         } else {
-            // 🧠 県や季節が指定されていない曖昧な質問の場合は、MySQL内の全特産品リストをカンニングペーパーとして渡す！
-            dbResults = specialtyRepository.findAll();
+            // 🧠 県や季節が指定されていない曖昧な質問の場合は、関東7都県からランダムに1県を選ぶ
+            String[] prefs = {"ibaraki", "tochigi", "gunma", "saitama", "chiba", "tokyo", "kanagawa"};
+            targetPref = prefs[new java.util.Random().nextInt(prefs.length)];
+            dbResults = specialtyRepository.findByPrefecture(targetPref);
         }
 
         dbContext.append("【データベースおよび紹介Webページから取得した本物の情報】\n");
@@ -105,7 +107,7 @@ public class ChatController {
                 "あなたは関東の旬の特産品、および食体験に関する専門案内AI（食材ソムリエ）です。\n" +
                         "【超厳格ルール】必ず、提供された【データベースおよび紹介Webページから取得した本物の情報】に記載されている食材・特産品情報のみを使用して回答を作成してください。二郎系ラーメンなど、そこに記載されていない食材やお店について、あなたの事前知識から勝手にでっち上げて提案することは絶対に禁止します。記載がない食材については『当アプリのデータベースには登録がありません』とスマートに断ってください。\n\n"
                         +
-                        "これまでの【これまでの会話履歴】をよく理解し、最新のユーザーの質問に対して、提供された【データベースおよび紹介Webページから取得した本物の情報】をベースにして自然に回答を作成してください。嘘の情報は絶対に作らないでください。\n\n"
+                        "これまでの【これまでの会話履歴】をよく理解し、最新のユーザーの質問に対して、提供された【データベースおよび紹介Webページから取得した本物の情報】をベースにして自然に回答を作成してください。ユーザーが県名や具体的な要望を指定していない場合は、「今日はランダムにこちらの県をご紹介します！」といったトーンで、提供された情報を魅力的に紹介してください。嘘の情報は絶対に作らないでください。\n\n"
                         +
                         "%s" +
                         "%s" +
