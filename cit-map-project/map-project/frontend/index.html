@@ -241,53 +241,53 @@
                     <div class="filter-container" style="flex-wrap:wrap; gap:16px 20px;">
                         <!-- 季節 -->
                         <div class="filter-group">
-                            <label for="season-select">🌸 季節:</label>
+                            <label for="season-select" data-i18n="seasonLabel">🌸 季節:</label>
                             <select id="season-select" class="neon-select">
-                                <option value="all">すべての季節</option>
-                                <option value="spring">春 (Spring)</option>
-                                <option value="summer">夏 (Summer)</option>
-                                <option value="autumn">秋 (Autumn)</option>
-                                <option value="winter">冬 (Winter)</option>
+                                <option value="all" data-i18n="seasonAll">すべての季節</option>
+                                <option value="spring" data-i18n="seasonSpring">春 (Spring)</option>
+                                <option value="summer" data-i18n="seasonSummer">夏 (Summer)</option>
+                                <option value="autumn" data-i18n="seasonAutumn">秋 (Autumn)</option>
+                                <option value="winter" data-i18n="seasonWinter">冬 (Winter)</option>
                             </select>
                         </div>
                         <!-- エリア -->
                         <div class="filter-group">
-                            <label for="pref-select">🗾 エリア:</label>
+                            <label for="pref-select" data-i18n="prefLabel">🗾 エリア:</label>
                             <select id="pref-select" class="neon-select">
-                                <option value="all">全エリア</option>
-                                <option value="ibaraki">茨城県</option>
-                                <option value="tochigi">栃木県</option>
-                                <option value="gunma">群馬県</option>
-                                <option value="saitama">埼玉県</option>
-                                <option value="chiba">千葉県</option>
-                                <option value="tokyo">東京都</option>
-                                <option value="kanagawa">神奈川県</option>
+                                <option value="all" data-i18n="prefAll">全エリア</option>
+                                <option value="ibaraki" data-i18n="prefIbaraki">茨城県</option>
+                                <option value="tochigi" data-i18n="prefTochigi">栃木県</option>
+                                <option value="gunma" data-i18n="prefGunma">群馬県</option>
+                                <option value="saitama" data-i18n="prefSaitama">埼玉県</option>
+                                <option value="chiba" data-i18n="prefChiba">千葉県</option>
+                                <option value="tokyo" data-i18n="prefTokyo">東京都</option>
+                                <option value="kanagawa" data-i18n="prefKanagawa">神奈川県</option>
                             </select>
                         </div>
                         <!-- カテゴリ -->
                         <div class="filter-group">
-                            <label for="category-select">🏷 カテゴリ:</label>
+                            <label for="category-select" data-i18n="catLabel">🏷 カテゴリ:</label>
                             <select id="category-select" class="neon-select">
-                                <option value="all">全カテゴリ</option>
-                                <option value="野菜">🥬 野菜</option>
-                                <option value="果物">🍑 果物</option>
-                                <option value="海鮮">🐟 海鮮</option>
-                                <option value="肉">🥩 肉</option>
-                                <option value="郷土料理">🍱 郷土料理</option>
-                                <option value="加工品">🏪 加工品</option>
-                                <option value="スイーツ">🍡 スイーツ</option>
-                                <option value="きのこ">🍄 きのこ</option>
-                                <option value="米">🌾 米</option>
-                                <option value="穀物">🌾 穀物</option>
+                                <option value="all" data-i18n="catAll">全カテゴリ</option>
+                                <option value="野菜" data-i18n="catVeg">🥬 野菜</option>
+                                <option value="果物" data-i18n="catFruit">🍑 果物</option>
+                                <option value="海鮮" data-i18n="catSeafood">🐟 海鮮</option>
+                                <option value="肉" data-i18n="catMeat">🥩 肉</option>
+                                <option value="郷土料理" data-i18n="catLocal">🍱 郷土料理</option>
+                                <option value="加工品" data-i18n="catProcessed">🏪 加工品</option>
+                                <option value="スイーツ" data-i18n="catSweets">🍡 スイーツ</option>
+                                <option value="きのこ" data-i18n="catMushroom">🍄 きのこ</option>
+                                <option value="米" data-i18n="catRice">🌾 米</option>
+                                <option value="穀物" data-i18n="catGrain">🌾 穀物</option>
                             </select>
                         </div>
                         <!-- キーワード -->
                         <div class="filter-group">
-                            <label for="keyword-input">🔍 キーワード:</label>
+                            <label for="keyword-input" data-i18n="kwLabel">🔍 キーワード:</label>
                             <input type="text" id="keyword-input" class="neon-input" placeholder="例: いちご、マグロ..."
-                                style="min-width:160px;">
+                                style="min-width:160px;" data-i18n-placeholder="kwPlaceholder">
                         </div>
-                        <button type="submit" id="search-button" class="neon-button">グルメを発見する</button>
+                        <button type="submit" id="search-button" class="neon-button" data-i18n="searchBtn">グルメを発見する</button>
                     </div>
                 </form>
                 <!-- 件数ラベル -->
@@ -315,8 +315,8 @@
                         data-i18n="swipe">👆 直感選別</li>
                     <li class="tab-item" role="tab" aria-selected="false" tabindex="-1" data-tab="tab-ai"
                         data-i18n="ai">🤖 AIソムリエ</li>
-                    <li class="tab-item" role="tab" aria-selected="false" tabindex="-1" data-tab="tab-recipe">🍳 レシピ連携
-                    </li>
+                    <li class="tab-item" role="tab" aria-selected="false" tabindex="-1" data-tab="tab-recipe"
+                        data-i18n="recipeTab">🍳 レシピ連携</li>
                     <li class="tab-item" role="tab" aria-selected="false" tabindex="-1" data-tab="tab-route"
                         data-i18n="route">🚃 ルート作成</li>
                 </ul>
@@ -509,9 +509,9 @@
             <button id="reset-app-btn" class="btn-ghost"
                 style="font-size:0.8rem;border-color:var(--danger);color:var(--danger);">⚠️ アプリデータを初期化</button>
         </div>
-        <p style="font-size:0.8rem;color:var(--text-sec);margin-top:10px;">※ 本サービスで使用する位置情報は第三者への提供を行いません。<a href="#"
+        <p style="font-size:0.8rem;color:var(--text-sec);margin-top:10px;"><span data-i18n="privacyNotice">※ 本サービスで使用する位置情報は第三者への提供を行いません。</span><a href="#"
                 onclick="document.getElementById('privacy-consent').hidden=false;return false;"
-                style="color:var(--accent);">プライバシーについて</a></p>
+                style="color:var(--accent);" data-i18n="privacyLink">プライバシーについて</a></p>
         <p class="copyright">© 2026 DS Course Project - Chiba Institute of Technology</p>
     </footer>
 
@@ -572,8 +572,8 @@
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-    <script src="data.js"></script>
-    <script src="script.js?v=2"></script>
+    <script src="data.js?v=5"></script>
+    <script src="script.js?v=5"></script>
 </body>
 
 </html>

@@ -1,5 +1,5 @@
 // バージョンを更新 → 古いキャッシュを自動破棄、prefecture.htmlを含む全HTMLを刷新
-const CACHE = 'kanto-gourmet-v11';
+const CACHE = 'kanto-gourmet-v13';
 const STATIC = ['./', './index.html', './style.css', './script.js', './data.js', './prefecture.html'];
 
 self.addEventListener('install', e => {
@@ -26,12 +26,15 @@ self.addEventListener('fetch', e => {
     // HTMLファイルはNetwork-first戦略: 常に最新を取得、失敗時のみキャッシュ
     e.respondWith(
       fetch(e.request).then(res => {
-        if (res.ok && res.type === 'basic') {
+        if (res.ok && res.type === 'basic' && e.request.url.startsWith('http')) {
           const clone = res.clone();
-          caches.open(CACHE).then(c => c.put(e.request, clone));
+          caches.open(CACHE).then(c => c.put(e.request, clone).catch(err => console.warn('Cache put err:', err)));
         }
         return res;
-      }).catch(() => caches.match(e.request))
+      }).catch(() => caches.match(e.request).then(cached => {
+        if (cached) return cached;
+        return new Response('Network error and no cache available', { status: 503, headers: { 'Content-Type': 'text/plain' } });
+      }))
     );
     return;
   }
@@ -39,11 +42,11 @@ self.addEventListener('fetch', e => {
   // CSS/JS/画像: Cache-first戦略
   e.respondWith(
     caches.match(e.request).then(cached => cached || fetch(e.request).then(res => {
-      if (res.ok && res.type === 'basic' && e.request.url.startsWith(self.location.origin)) {
+      if (res.ok && res.type === 'basic' && e.request.url.startsWith('http')) {
         const clone = res.clone();
-        caches.open(CACHE).then(c => c.put(e.request, clone));
+        caches.open(CACHE).then(c => c.put(e.request, clone).catch(err => console.warn('Cache put err:', err)));
       }
       return res;
-    }).catch(() => { }))
+    }).catch(() => new Response('', { status: 503 })))
   );
 });

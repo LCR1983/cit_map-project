@@ -317,6 +317,7 @@
 
   // ── グローバルに公開 ─────────────────────────────────────────────────────
   window.specialtyDatabase = createDatabase();
+  window.detectCategory = detectCategory;
 
   if (typeof console !== 'undefined') {
     console.log('[data.js] specialtyDatabase loaded:', window.specialtyDatabase.length, 'items');

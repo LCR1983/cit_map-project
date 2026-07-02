@@ -125,7 +125,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Header Settings (Lang, Font, Color) ---
     const translations = {
-        "title": "Kanto Local Food Map", "subtitle": "Find seasonal local specialties!", "gpsTitle": "Find specialties near you", "gpsBtn": "Get Location", "event": "📅 Events", "weatherTitle": "Weather Recommend", "weatherGet": "Get Weather", "quizTitle": "Local Food Quiz", "swipeTitle": "Intuitive Matching", "swipeDesc": "Drag cards or use buttons!", "swipeMatched": "Matched Foods", "aiTitle": "AI Sommelier", "aiGreeting": "Do you have any plans? (e.g., Seafood with partner)", "chatSend": "Send", "routeTitle": "Tour Planner", "routeCreate": "Generate Plan", "officialX": "Official X", "officialHP": "University HP"
+        "title": "Kanto Local Food Map", "subtitle": "Find seasonal local specialties!", "gpsTitle": "Find specialties near you", "gpsBtn": "Get Location", "event": "📅 Events", "weatherTitle": "Weather Recommend", "weatherGet": "Get Weather", "quizTitle": "Local Food Quiz", "swipeTitle": "Intuitive Matching", "swipeDesc": "Drag cards or use buttons!", "swipeMatched": "Matched Foods", "aiTitle": "AI Sommelier", "aiGreeting": "Do you have any plans? (e.g., Seafood with partner)", "chatSend": "Send", "routeTitle": "Tour Planner", "routeCreate": "Generate Plan", "officialX": "Official X", "officialHP": "University HP",
+        "lang": "Language", "fontSize": "Font Size", "std": "Standard", "large": "Large", "bgColor": "Background", "black": "Dark", "white": "Light",
+        "news1": "Recommended for weekend trips! Kanto spring gourmet feature", "news2": "Local harvest festivals being held in each prefecture", "news3": "Specialty data with photos and ratings increased to 56 items!",
+        "rateTitle": "Rate this tool", "rateDesc": "Did it help you find new food experiences?", "commentLabel": "Feedback & Comments", "submit": "Submit Rating",
+        "searchTitle": "Seasonal Local Food Search", "seasonLabel": "🌸 Season:", "seasonAll": "All Seasons", "seasonSpring": "Spring", "seasonSummer": "Summer", "seasonAutumn": "Autumn", "seasonWinter": "Winter",
+        "prefLabel": "🗾 Area:", "prefAll": "All Areas", "prefIbaraki": "Ibaraki", "prefTochigi": "Tochigi", "prefGunma": "Gunma", "prefSaitama": "Saitama", "prefChiba": "Chiba", "prefTokyo": "Tokyo", "prefKanagawa": "Kanagawa",
+        "catLabel": "🏷 Category:", "catAll": "All Categories", "catVeg": "🥬 Vegetables", "catFruit": "🍑 Fruits", "catSeafood": "🐟 Seafood", "catMeat": "🥩 Meat", "catLocal": "🍱 Local Dish", "catProcessed": "🏪 Processed", "catSweets": "🍡 Sweets", "catMushroom": "🍄 Mushroom", "catRice": "🌾 Rice", "catGrain": "🌾 Grain",
+        "kwLabel": "🔍 Keyword:", "kwPlaceholder": "e.g. strawberry, tuna...", "searchBtn": "Discover Food",
+        "featureTitle": "Food & Tourism Experience Tools", "gps": "🗺️ Location", "chart": "📊 Season Chart", "weather": "⛅ Weather", "quiz": "🧩 Quiz", "swipe": "👆 Swipe Match", "ai": "🤖 AI Sommelier", "recipeTab": "🍳 AI Recipe", "route": "🚃 Tour Route",
+        "chartTitle": "Seasonal Gantt Chart",
+        "localDish": "🍴 Related Local Dish", "marketInfo": "🛒 Where to enjoy?", "mapSearch": "📍 Search on Google Maps",
+        "privacyNotice": "* Location information used in this service will not be provided to third parties.", "privacyLink": "About Privacy"
     };
     const toggleLanguage = (lang) => {
         document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -135,6 +146,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 el.textContent = translations[key];
             } else if (lang === 'jp' && el.dataset.ja) {
                 el.textContent = el.dataset.ja;
+            }
+        });
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+            const key = el.dataset.i18nPlaceholder;
+            if (lang === 'en' && translations[key]) {
+                el.dataset.jaPlaceholder = el.dataset.jaPlaceholder || el.placeholder;
+                el.placeholder = translations[key];
+            } else if (lang === 'jp' && el.dataset.jaPlaceholder) {
+                el.placeholder = el.dataset.jaPlaceholder;
             }
         });
     };
