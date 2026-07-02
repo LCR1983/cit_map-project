@@ -651,6 +651,11 @@ body {
     color: var(--admin-success);
 }
 
+.badge-category {
+    background: rgba(251, 146, 60, 0.15);
+    color: #fb923c;
+}
+
 .action-btns {
     display: flex;
     gap: 8px;

@@ -479,7 +479,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let filtered = specialtyDatabase;
         if (season !== 'all') filtered = filtered.filter(i => i.season === season);
         if (pref !== 'all') filtered = filtered.filter(i => i.prefecture === pref);
-        if (cat !== 'all') filtered = filtered.filter(i => i.category === cat);
+        if (cat !== 'all') filtered = filtered.filter(i => detectCategory(i.name) === cat);
         if (kw) filtered = filtered.filter(i => i.name.includes(kw) || (i.description && i.description.includes(kw)));
 
         // Update count label
@@ -977,6 +977,17 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('modal-image').src = item.imageSrc || item.imageUrl;
         document.getElementById('modal-title').textContent = item.name;
         document.getElementById('modal-description').textContent = item.description;
+
+        const catBadge = document.getElementById('modal-category-badge');
+        if (catBadge) {
+            const cat = detectCategory(item.name);
+            if (cat) {
+                catBadge.textContent = '🏷 ' + cat;
+                catBadge.style.display = 'inline-block';
+            } else {
+                catBadge.style.display = 'none';
+            }
+        }
         document.getElementById('modal-dish').textContent = item.localDish || '-';
         document.getElementById('modal-market').textContent = item.marketInfo || '-';
         const mapLink = document.getElementById('modal-map-link');

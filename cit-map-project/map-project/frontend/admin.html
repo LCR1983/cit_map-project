@@ -97,6 +97,19 @@
                 <option value="autumn">🍁 秋</option>
                 <option value="winter">❄️ 冬</option>
             </select>
+            <select id="filter-category" class="filter-select">
+                <option value="all">すべてのカテゴリ</option>
+                <option value="野菜">野菜</option>
+                <option value="果物">果物</option>
+                <option value="海鮮">海鮮</option>
+                <option value="肉">肉</option>
+                <option value="郷土料理">郷土料理</option>
+                <option value="加工品">加工品</option>
+                <option value="スイーツ">スイーツ</option>
+                <option value="きのこ">きのこ</option>
+                <option value="米">米</option>
+                <option value="穀物">穀物</option>
+            </select>
             <button id="btn-add-new" class="btn-add">＋ 新規追加</button>
         </div>
 
@@ -110,7 +123,7 @@
                         <th>食材名</th>
                         <th>都県</th>
                         <th>季節</th>
-                        <th>説明</th>
+                        <th>カテゴリ</th>
                         <th>操作</th>
                     </tr>
                 </thead>
@@ -226,10 +239,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="edit-imageurl">画像URL（任意）</label>
-                    <input type="url" id="edit-imageurl" class="form-input" placeholder="https://example.com/image.jpg">
+                    <label for="edit-imageurl">画像ファイルパス（任意）</label>
+                    <input type="text" id="edit-imageurl" class="form-input" placeholder="例: images/ibaraki_mitonatto.png">
                     <div id="image-preview" class="image-preview-container">
-                        <div class="image-preview-placeholder">📷 画像URLを入力するとプレビューが表示されます</div>
+                        <div class="image-preview-placeholder">📷 画像ファイルパスを入力するとプレビューが表示されます</div>
                     </div>
                 </div>
 

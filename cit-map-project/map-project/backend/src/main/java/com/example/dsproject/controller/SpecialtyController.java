@@ -260,13 +260,11 @@ public class SpecialtyController {
             errors.add("季節を選択してください。");
         }
 
-        // 画像URLのフォーマットチェック（任意項目だが、入力されたら形式を検証）
-        if (req.getImageUrl() != null && !req.getImageUrl().trim().isEmpty()) {
-            String url = req.getImageUrl().trim();
-            if (!url.startsWith("http://") && !url.startsWith("https://")) {
-                errors.add("画像URLは http:// または https:// で始まる必要があります。");
-            }
-        }
+        // 画像URLのフォーマットチェック（相対パスも許可するためhttpの検証を削除）
+        // if (req.getImageUrl() != null && !req.getImageUrl().trim().isEmpty()) {
+        //     String url = req.getImageUrl().trim();
+        //     // ローカル画像ファイルを利用するため、URL形式の検証を削除
+        // }
 
         if (!errors.isEmpty()) {
             return ResponseEntity.status(400).body(Map.of("errors", errors));

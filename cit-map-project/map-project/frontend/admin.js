@@ -198,13 +198,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const searchVal = document.getElementById('search-input').value.toLowerCase();
         const prefFilter = document.getElementById('filter-pref').value;
         const seasonFilter = document.getElementById('filter-season').value;
+        const categoryFilter = document.getElementById('filter-category').value;
 
         // フィルタリング
         let filtered = allSpecialties.filter(item => {
             const matchSearch = !searchVal || item.name.toLowerCase().includes(searchVal);
             const matchPref = prefFilter === 'all' || item.prefecture === prefFilter;
             const matchSeason = seasonFilter === 'all' || item.season === seasonFilter;
-            return matchSearch && matchPref && matchSeason;
+            const matchCategory = categoryFilter === 'all' || detectCategory(item.name) === categoryFilter;
+            return matchSearch && matchPref && matchSeason && matchCategory;
         });
 
         if (filtered.length === 0) {
@@ -225,6 +227,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 ? `<img src="${escapeHtml(item.imageUrl)}" class="table-img" onerror="this.outerHTML='<div class=\\'table-img-placeholder\\'>🖼️</div>'">`
                 : `<div class="table-img-placeholder">🖼️</div>`;
 
+            const categoryLabel = escapeHtml(detectCategory(item.name) || '－');
+
             return `
                 <tr>
                     <td style="color:var(--admin-text-sec);font-size:0.8rem;">${item.id}</td>
@@ -232,7 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <td><strong>${escapeHtml(item.name)}</strong></td>
                     <td><span class="badge badge-pref">${prefNames[item.prefecture] || item.prefecture}</span></td>
                     <td><span class="badge badge-season">${seasonNames[item.season] || item.season}</span></td>
-                    <td style="max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--admin-text-sec);font-size:0.85rem;">${escapeHtml(item.description || '')}</td>
+                    <td><span class="badge badge-category">${categoryLabel}</span></td>
                     <td>
                         <div class="action-btns">
                             <button class="btn-edit" onclick="openEditModal(${item.id})">✏️ 編集</button>
@@ -247,6 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('search-input').addEventListener('input', renderTable);
     document.getElementById('filter-pref').addEventListener('change', renderTable);
     document.getElementById('filter-season').addEventListener('change', renderTable);
+    document.getElementById('filter-category').addEventListener('change', renderTable);
 
     // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     // 新規追加 / 編集モーダル
@@ -367,7 +372,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function updateImagePreview(url) {
-        if (!url || (!url.startsWith('http://') && !url.startsWith('https://'))) {
+        if (!url) {
             clearImagePreview();
             return;
         }
@@ -386,7 +391,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function clearImagePreview() {
-        imagePreviewContainer.innerHTML = '<div class="image-preview-placeholder">📷 画像URLを入力するとプレビューが表示されます</div>';
+        imagePreviewContainer.innerHTML = '<div class="image-preview-placeholder">📷 画像ファイルパスを入力するとプレビューが表示されます</div>';
         imagePreviewContainer.classList.remove('has-image');
     }
 
@@ -603,6 +608,23 @@ document.addEventListener('DOMContentLoaded', () => {
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // ユーティリティ関数
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+/**
+ * 食材名からカテゴリを推定する（data.js の detectCategory と同一ロジック）
+ */
+function detectCategory(name) {
+    if (!name) return '野菜';
+    if (/メロン|スイカ|梨|栗|いちご|びわ|ゴールド|ぶどう|柿|桃|ブルーベリー|りんご|夏みかん/.test(name)) return '果物';
+    if (/魚|鮎|アユ|しらす|ブリ|鯛|アジ|鯵|伊勢えび|サザエ|あさり|ハマグリ|はまぐり|しじみ|さんま|サンマ|鯖|サバ|かつお|金目鯛|マグロ|わかさぎ|穴子|海苔|いわし|アジフライ|干物|わかめ|海老|さくら海老/.test(name)) return '海鮮';
+    if (/牛|豚|鹿|東京X|シロコロ|麦豚|和牛/.test(name)) return '肉';
+    if (/鍋|汁|丼|うどん|そば|寿司|餃子|おでん|焼きそば|天丼|天ぷら|田楽|すき焼き|しゃぶしゃぶ|めし|深川|柳川|もんじゃ|ちゃんこ|なめろう|さんが焼き|建長|おっきりこみ|煮ぼうとう|焼き肉|塩焼き|揚げ|かき揚げ|カレー|冷やし|冷汁/.test(name)) return '郷土料理';
+    if (/納豆|ほしいも|干し|ジャム|ジュース|かまぼこ|くさや|せんべい|天然氷|湯葉|ゆば|こんにゃく|加工品|焼酎|ところてん|みそ味噌|佃煮/.test(name)) return '加工品';
+    if (/餅|大福|まんじゅう|ようかん|団子|かき氷|甘酒|ゼリー|スイーツ|和菓子/.test(name)) return 'スイーツ';
+    if (/舞茸|まいたけ|しいたけ|きのこ|しめじ/.test(name)) return 'きのこ';
+    if (/新米|おこわ|ご飯/.test(name)) return '米';
+    if (/そば麦|麦/.test(name)) return '穀物';
+    return '野菜';
+}
 
 /**
  * トースト通知を表示（4秒後に自動消滅）
