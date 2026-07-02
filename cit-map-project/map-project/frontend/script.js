@@ -611,10 +611,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    // --- Swipe Feature ---
+    // --- Swipe Feature (Tinder-style drag) ---
     const swipeImg = document.getElementById('swipe-img');
     const swipeName = document.getElementById('swipe-name');
     const swipeDesc = document.getElementById('swipe-desc');
+
     const initSwipe = () => {
         if (appState.swipeDeck.length === 0) {
             appState.swipeDeck = [...specialtyDatabase].sort(() => Math.random() - 0.5);
@@ -623,75 +624,173 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         renderSwipeCard();
     };
+
     const renderSwipeCard = () => {
         const card = document.getElementById('swipe-card');
         if (!card) return;
+
+        // ドラッグ状態をリセット
+        card.classList.remove('is-dragging');
+        card.style.transform = '';
+        const likeEl = card.querySelector('.swipe-status.like');
+        const nopeEl = card.querySelector('.swipe-status.nope');
+        if (likeEl) likeEl.style.opacity = '0';
+        if (nopeEl) nopeEl.style.opacity = '0';
+
         if (appState.swipeIndex >= appState.swipeDeck.length) {
             if (swipeImg) swipeImg.style.display = 'none';
             if (swipeName) swipeName.textContent = '🎉 全カード完了！';
             if (swipeDesc) {
                 swipeDesc.textContent = '';
-                const btn = document.createElement('button'); btn.className = 'neon-button'; btn.textContent = '🔄 もう一度シャッフル';
-                btn.onclick = () => { appState.swipeDeck = []; initSwipe(); swipeImg.style.display = 'block'; };
+                const btn = document.createElement('button');
+                btn.className = 'neon-button';
+                btn.textContent = '🔄 もう一度シャッフル';
+                btn.onclick = () => {
+                    appState.swipeDeck = [];
+                    initSwipe();
+                    if (swipeImg) swipeImg.style.display = 'block';
+                };
                 swipeDesc.appendChild(btn);
             }
+            // ヒントを非表示
+            const hint = card.querySelector('.swipe-hint');
+            if (hint) hint.style.display = 'none';
             return;
         }
+
         const item = appState.swipeDeck[appState.swipeIndex];
         if (swipeImg) swipeImg.src = item.imageSrc || item.imageUrl;
         if (swipeName) swipeName.textContent = item.name;
         if (swipeDesc) swipeDesc.textContent = item.description;
+
+        // ヒントを表示
+        const hint = card.querySelector('.swipe-hint');
+        if (hint) hint.style.display = '';
     };
 
-    const swipeLike = document.getElementById('swipe-yes');
-    const swipePass = document.getElementById('swipe-no');
+    // ドラッグ判定しきい値
+    const SWIPE_THRESHOLD = 100;
+    const ROTATION_FACTOR = 0.12; // ドラッグ量に対する回転角の係数
+
+    const setupDrag = () => {
+        const card = document.getElementById('swipe-card');
+        if (!card) return;
+
+        let startX = 0, startY = 0, currentX = 0;
+        let isDragging = false;
+
+        const getClientX = (e) => e.touches ? e.touches[0].clientX : e.clientX;
+        const getClientY = (e) => e.touches ? e.touches[0].clientY : e.clientY;
+
+        const onStart = (e) => {
+            if (appState.swipeIndex >= appState.swipeDeck.length) return;
+            isDragging = true;
+            startX = getClientX(e);
+            startY = getClientY(e);
+            currentX = 0;
+            card.classList.add('is-dragging');
+        };
+
+        const onMove = (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            currentX = getClientX(e) - startX;
+            const currentY = getClientY(e) - startY;
+            const rotate = currentX * ROTATION_FACTOR;
+
+            card.style.transform = `translateX(${currentX}px) translateY(${currentY * 0.3}px) rotate(${rotate}deg)`;
+
+            // オーバーレイの透明度をドラッグ量に応じて変化
+            const ratio = Math.min(Math.abs(currentX) / SWIPE_THRESHOLD, 1);
+            const likeEl = card.querySelector('.swipe-status.like');
+            const nopeEl = card.querySelector('.swipe-status.nope');
+            if (currentX > 0) {
+                if (likeEl) likeEl.style.opacity = ratio;
+                if (nopeEl) nopeEl.style.opacity = '0';
+            } else {
+                if (nopeEl) nopeEl.style.opacity = ratio;
+                if (likeEl) likeEl.style.opacity = '0';
+            }
+        };
+
+        const onEnd = () => {
+            if (!isDragging) return;
+            isDragging = false;
+            card.classList.remove('is-dragging');
+
+            if (currentX > SWIPE_THRESHOLD) {
+                triggerSwipe('like');
+            } else if (currentX < -SWIPE_THRESHOLD) {
+                triggerSwipe('nope');
+            } else {
+                // スナップバック
+                card.style.transform = '';
+                const likeEl = card.querySelector('.swipe-status.like');
+                const nopeEl = card.querySelector('.swipe-status.nope');
+                if (likeEl) likeEl.style.opacity = '0';
+                if (nopeEl) nopeEl.style.opacity = '0';
+            }
+        };
+
+        // Mouse events
+        card.addEventListener('mousedown', onStart);
+        document.addEventListener('mousemove', onMove);
+        document.addEventListener('mouseup', onEnd);
+
+        // Touch events
+        card.addEventListener('touchstart', onStart, { passive: false });
+        card.addEventListener('touchmove', onMove, { passive: false });
+        card.addEventListener('touchend', onEnd);
+    };
+
+    const triggerSwipe = (direction) => {
+        const card = document.getElementById('swipe-card');
+        if (!card) return;
+        const flyX = direction === 'like' ? window.innerWidth : -window.innerWidth;
+        card.style.transition = 'transform 0.45s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.45s ease';
+        card.style.transform = `translateX(${flyX}px) rotate(${direction === 'like' ? 25 : -25}deg)`;
+        card.style.opacity = '0';
+
+        if (direction === 'like') {
+            const item = appState.swipeDeck[appState.swipeIndex];
+            if (!appState.favorites.includes(item.id)) { toggleFav(item.id); }
+            appendMatched(item);
+        }
+
+        setTimeout(() => {
+            card.style.transition = 'none';
+            card.style.opacity = '1';
+            appState.swipeIndex++;
+            renderSwipeCard();
+        }, 450);
+    };
 
     const appendMatched = (item) => {
         const resContainer = document.getElementById('swipe-results');
         if (!resContainer) return;
         const div = document.createElement('div');
-        div.className = 'specialty-card'; div.style.cursor = 'pointer';
+        div.className = 'specialty-card';
+        div.style.cursor = 'pointer';
         div.innerHTML = `<img src="${item.imageSrc || item.imageUrl}" style="width:100%;height:100px;object-fit:cover;"><h4>${item.name}</h4>`;
         div.onclick = () => openModal(item);
         resContainer.appendChild(div);
     };
 
+    // ボタン操作
+    const swipeLike = document.getElementById('swipe-yes');
+    const swipePass = document.getElementById('swipe-no');
+
     if (swipeLike) swipeLike.addEventListener('click', () => {
         if (appState.swipeIndex >= appState.swipeDeck.length) return;
-        const item = appState.swipeDeck[appState.swipeIndex];
-        // Animate
-        const card = document.getElementById('swipe-card');
-        card.style.transform = 'translateX(100px) rotate(15deg)';
-        card.style.opacity = '0';
-
-        if (!appState.favorites.includes(item.id)) { toggleFav(item.id); }
-        appendMatched(item);
-
-        setTimeout(() => {
-            appState.swipeIndex++;
-            card.style.transition = 'none';
-            card.style.transform = 'translateX(0) rotate(0)';
-            card.style.opacity = '1';
-            renderSwipeCard();
-            setTimeout(() => card.style.transition = 'transform 0.4s ease, opacity 0.4s ease', 50);
-        }, 400);
+        triggerSwipe('like');
     });
     if (swipePass) swipePass.addEventListener('click', () => {
         if (appState.swipeIndex >= appState.swipeDeck.length) return;
-        // Animate
-        const card = document.getElementById('swipe-card');
-        card.style.transform = 'translateX(-100px) rotate(-15deg)';
-        card.style.opacity = '0';
-
-        setTimeout(() => {
-            appState.swipeIndex++;
-            card.style.transition = 'none';
-            card.style.transform = 'translateX(0) rotate(0)';
-            card.style.opacity = '1';
-            renderSwipeCard();
-            setTimeout(() => card.style.transition = 'transform 0.4s ease, opacity 0.4s ease', 50);
-        }, 400);
+        triggerSwipe('nope');
     });
+
+    // ドラッグセットアップ（タブ初期化後に呼ぶ）
+    setupDrag();
 
     // --- AI Sommelier Chat (Backend API + fallback) ---
     const chatInput = document.getElementById('chat-input');
