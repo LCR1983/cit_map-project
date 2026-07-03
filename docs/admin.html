@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="関東ローカルグルメマップ - 管理者ツール">
+    <meta name="robots" content="noindex, nofollow">
+    <title>🛡️ 管理者ツール | 関東ローカルグルメマップ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+
+    <!-- ━━━━ トースト通知コンテナ ━━━━ -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- ━━━━ ログイン画面 ━━━━ -->
+    <div id="login-screen" class="login-wrapper">
+        <div class="login-card">
+            <div class="shield-icon">🛡️</div>
+            <h1>管理者ログイン</h1>
+            <p class="subtitle">認証が必要です。管理者の資格情報を入力してください。</p>
+
+            <div id="login-error" class="login-error"></div>
+
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-username">👤 ユーザー名</label>
+                    <input type="text" id="login-username" class="form-input" placeholder="ユーザー名を入力" autocomplete="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">🔑 パスワード</label>
+                    <input type="password" id="login-password" class="form-input" placeholder="パスワードを入力" autocomplete="current-password" required>
+                </div>
+                <button type="submit" id="login-btn" class="btn-primary">ログイン</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ━━━━ ダッシュボード（ログイン後） ━━━━ -->
+    <div id="dashboard" class="admin-dashboard">
+
+        <!-- ヘッダー -->
+        <header class="admin-header">
+            <h1>🛡️ <span>管理者ツール</span></h1>
+            <div class="header-actions">
+                <a href="/" style="color:var(--admin-text-sec);text-decoration:none;font-size:0.85rem;">← メインサイトへ戻る</a>
+                <button id="logout-btn" class="btn-logout">🚪 ログアウト</button>
+            </div>
+        </header>
+
+        <!-- タブナビゲーション -->
+        <div class="admin-tabs">
+            <button class="tab-btn active" data-target="tab-specialties">🍱 特産品データ管理</button>
+            <button class="tab-btn" data-target="tab-ratings">⭐ 評価コメント管理</button>
+        </div>
+
+        <!-- ＝＝＝ 特産品タブ ＝＝＝ -->
+        <div id="tab-specialties" class="tab-content active">
+
+        <!-- 統計カード -->
+        <div class="stats-bar">
+            <div class="stat-card">
+                <div class="stat-number" id="stat-total">-</div>
+                <div class="stat-label">登録データ件数</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="stat-prefs">-</div>
+                <div class="stat-label">都県カバー数</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="stat-seasons">-</div>
+                <div class="stat-label">季節カバー数</div>
+            </div>
+        </div>
+
+        <!-- ツールバー -->
+        <div class="toolbar">
+            <input type="text" id="search-input" class="search-input" placeholder="🔍 食材名で検索...">
+            <select id="filter-pref" class="filter-select">
+                <option value="all">すべての都県</option>
+                <option value="ibaraki">茨城県</option>
+                <option value="tochigi">栃木県</option>
+                <option value="gunma">群馬県</option>
+                <option value="saitama">埼玉県</option>
+                <option value="chiba">千葉県</option>
+                <option value="tokyo">東京都</option>
+                <option value="kanagawa">神奈川県</option>
+            </select>
+            <select id="filter-season" class="filter-select">
+                <option value="all">すべての季節</option>
+                <option value="spring">🌸 春</option>
+                <option value="summer">☀️ 夏</option>
+                <option value="autumn">🍁 秋</option>
+                <option value="winter">❄️ 冬</option>
+            </select>
+            <button id="btn-add-new" class="btn-add">＋ 新規追加</button>
+        </div>
+
+        <!-- データテーブル -->
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>画像</th>
+                        <th>食材名</th>
+                        <th>都県</th>
+                        <th>季節</th>
+                        <th>説明</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="data-tbody">
+                    <!-- JavaScriptで動的に生成 -->
+                </tbody>
+            </table>
+        </div>
+        </div>
+
+        <!-- ＝＝＝ 評価コメントタブ ＝＝＝ -->
+        <div id="tab-ratings" class="tab-content">
+            <div class="ratings-dashboard">
+                <!-- 左側：グラフ＆AI -->
+                <div class="ratings-left-panel">
+                    <div class="chart-card">
+                        <h3>📊 評価分布</h3>
+                        <div class="donut-chart-container">
+                            <div class="pie-chart" id="rating-pie-chart"></div>
+                            <div class="donut-hole">
+                                <div class="donut-avg" id="rating-avg">0.0</div>
+                                <div class="donut-label">平均評価</div>
+                            </div>
+                        </div>
+                        <div class="chart-legend" id="rating-legend">
+                            <!-- JSで生成 -->
+                        </div>
+                    </div>
+                    
+                    <div class="ai-card">
+                        <button id="btn-ai-analyze" class="btn-ai">🤖 AIで評価を分析</button>
+                        <div id="ai-loading" class="ai-loading" style="display: none;">
+                            <div class="spinner"></div>
+                            <span>Gemma2が分析中...</span>
+                        </div>
+                        <div id="ai-report" class="ai-report markdown-body" style="display: none;"></div>
+                        <div class="ai-disclaimer">
+                            ⚠️ <strong>ご注意:</strong> AI（Gemma2）は事実とは異なる情報（ハルシネーション）を出力する可能性があります。レポート内容は参考として活用し、正確なデータは直接コメントをご確認ください。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右側：テーブル -->
+                <div class="ratings-right-panel">
+                    <div class="table-container" style="padding: 0;">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 80px;">評価</th>
+                                    <th>コメント</th>
+                                    <th style="width: 130px;">送信日時</th>
+                                    <th style="width: 80px;">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ratings-tbody">
+                                <!-- JavaScriptで動的に生成 -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ━━━━ 新規追加 / 編集モーダル ━━━━ -->
+    <div id="edit-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">📝 新規追加</h2>
+                <button class="modal-close" id="modal-close-btn">&times;</button>
+            </div>
+
+            <form id="edit-form">
+                <div class="form-group">
+                    <label for="edit-name">食材名 <span style="color:var(--admin-danger)">*</span></label>
+                    <input type="text" id="edit-name" class="form-input" placeholder="例: たけのこ" maxlength="100" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edit-prefecture">都県 <span style="color:var(--admin-danger)">*</span></label>
+                        <select id="edit-prefecture" class="form-input" required>
+                            <option value="">選択してください</option>
+                            <option value="ibaraki">茨城県</option>
+                            <option value="tochigi">栃木県</option>
+                            <option value="gunma">群馬県</option>
+                            <option value="saitama">埼玉県</option>
+                            <option value="chiba">千葉県</option>
+                            <option value="tokyo">東京都</option>
+                            <option value="kanagawa">神奈川県</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-season">季節 <span style="color:var(--admin-danger)">*</span></label>
+                        <select id="edit-season" class="form-input" required>
+                            <option value="">選択してください</option>
+                            <option value="spring">🌸 春</option>
+                            <option value="summer">☀️ 夏</option>
+                            <option value="autumn">🍁 秋</option>
+                            <option value="winter">❄️ 冬</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-description">説明 <span style="color:var(--admin-danger)">*</span></label>
+                    <textarea id="edit-description" placeholder="食材の魅力を説明してください..." maxlength="2000" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-localdish">郷土料理（任意）</label>
+                    <input type="text" id="edit-localdish" class="form-input" placeholder="例: たけのこご飯" maxlength="200">
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-imageurl">画像URL（任意）</label>
+                    <input type="url" id="edit-imageurl" class="form-input" placeholder="https://example.com/image.jpg">
+                    <div id="image-preview" class="image-preview-container">
+                        <div class="image-preview-placeholder">📷 画像URLを入力するとプレビューが表示されます</div>
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancel" id="modal-cancel-btn">キャンセル</button>
+                    <button type="submit" class="btn-save" id="modal-save-btn">💾 保存する</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ━━━━ 削除確認ダイアログ ━━━━ -->
+    <div id="confirm-overlay" class="confirm-overlay">
+        <div class="confirm-card">
+            <div class="confirm-icon">⚠️</div>
+            <h3>本当に削除しますか？</h3>
+            <p id="confirm-message">この操作は取り消せません。</p>
+            <div class="confirm-actions">
+                <button class="btn-confirm-cancel" id="confirm-cancel-btn">キャンセル</button>
+                <button class="btn-confirm-delete" id="confirm-delete-btn">🗑️ 削除する</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
